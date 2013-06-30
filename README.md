@@ -40,7 +40,8 @@ IAElegantSheet *elegantSheet = [IAElegantSheet elegantSheetWithTitle:@"Elegant S
 }];
 
 // set destructive red button with its block
-[elegantSheet setDestructiveButtonWithTitle:@"" block:^{
+[elegantSheet setDestructiveButtonWithTitle:@"Danger Button" block:^{
+	[self doSomethingDangerous];
 }];
 
 // set cancel title (optional for block handle)
