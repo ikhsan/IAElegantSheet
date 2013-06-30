@@ -3,7 +3,10 @@
 Another UIActionSheet but more elegant. Elegant to code and elegant to see. Using Roboto Condensed as default font. 
 
 ## Urgh, another block based UIActionSheet?
-Yes! :) We can't get enough of block based handler for replacing default UIKit. I've built it for my current project and I want to learn how to built default action sheet around block handlers.
+
+Yes! :) We can't just get enough of block based handler are we. 
+
+I've built it for my latest/current project, and I built it also to learn on how to built action sheet using block handlers.
 
 Currently still WIP though.
 
@@ -23,25 +26,36 @@ Import the header, create sheet, add buttons, add handler and show it :
 ````objc
 #import "IAElegantSheet.h"
 
+IAElegantSheet *elegantSheet = [IAElegantSheet elegantSheetWithTitle:@"Elegant Sheet"];
 
-IAElegantSheet *elegantSheet = [IAElegantSheet 
-elegantSheetWithTitle:@"Elegant Sheet"];
-[elegantSheet addButtonsWithTitle:@"Elegant to code" block:^{
-		code.isElegant = YES;
+// add buttons with its own block
+[elegantSheet addButtonsWithTitle:@"Elegant to code" block:^{ 
+	code.isElegant = YES; 
 }];
 [elegantSheet addButtonsWithTitle:@"Elegant to see" block:^{
-		sheet.isElegant = YES;
+	sheet.isElegant = YES;
 }];
 [elegantSheet addButtonsWithTitle:@"Custom font by default" block:^{
-		font = @"Roboto";
+	NSString *defaultFont = @"Roboto";
 }];
+
+// set destructive red button with its block
+[elegantSheet setDestructiveButtonWithTitle:@"" block:^{
+}];
+
+// set cancel title (optional for block handle)
 [elegantSheet setCancelButtonWithTitle:@"Thanks!" block:nil];
 [elegantSheet showInView:self.view];
 ````
 
+##Todo
+
+- Bundle custom fonts
+- Submit to cocoapod
+
 ## License
 
-IAElegantSheet is provided under the MIT license.  See LICENSE for specifics.
+IAElegantSheet is provided under the MIT license.  See LICENSE.
 
 ## Attribution
 

@@ -40,7 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		46E80C43177FFD3E001E2DFF /* IAElegantSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IAElegantSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		46E80C43177FFD3E001E2DFF /* Elegant Sheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elegant Sheet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E80C46177FFD3E001E2DFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		46E80C48177FFD3E001E2DFF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		46E80C4A177FFD3E001E2DFF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -106,7 +106,7 @@
 		46E80C44177FFD3E001E2DFF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				46E80C43177FFD3E001E2DFF /* IAElegantSheet.app */,
+				46E80C43177FFD3E001E2DFF /* Elegant Sheet.app */,
 				46E80C64177FFD3E001E2DFF /* IAElegantSheetTests.xctest */,
 			);
 			name = Products;
@@ -203,7 +203,7 @@
 			);
 			name = IAElegantSheet;
 			productName = IAElegantSheet;
-			productReference = 46E80C43177FFD3E001E2DFF /* IAElegantSheet.app */;
+			productReference = 46E80C43177FFD3E001E2DFF /* Elegant Sheet.app */;
 			productType = "com.apple.product-type.application";
 		};
 		46E80C63177FFD3E001E2DFF /* IAElegantSheetTests */ = {
@@ -423,7 +423,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/IAElegantSheet-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/IAElegantSheet-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Elegant Sheet";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -438,7 +438,7 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/IAElegantSheet-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/IAElegantSheet-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Elegant Sheet";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
