@@ -7,6 +7,9 @@ Yes! :) We can't get enough of block based handler for replacing default UIKit. 
 
 Currently still WIP though.
 
+## Preview
+![image](https://dl.dropboxusercontent.com/u/10627916/elegantsheet-portrait.png)
+![image](https://dl.dropboxusercontent.com/u/10627916/elegantsheet-landscape.png)
 
 ## Requirements
 
@@ -22,17 +25,17 @@ Import the header, create sheet, add buttons, add handler and show it :
 
 
 IAElegantSheet *elegantSheet = [IAElegantSheet 
-elegantSheetWithTitle:@"How awesome you are?"];
-[elegantSheet addButtonsWithTitle:@"Awesome" block:^{
-		[you setAwesomeness:5];
+elegantSheetWithTitle:@"Elegant Sheet"];
+[elegantSheet addButtonsWithTitle:@"Elegant to code" block:^{
+		code.isElegant = YES;
 }];
-[elegantSheet addButtonsWithTitle:@"Awesomer" block:^{
-		[you setAwesomeness:8];
+[elegantSheet addButtonsWithTitle:@"Elegant to see" block:^{
+		sheet.isElegant = YES;
 }];
-[elegantSheet addButtonsWithTitle:@"Awesomest" block:^{
-		[you setAwesomeness:10];
+[elegantSheet addButtonsWithTitle:@"Custom font by default" block:^{
+		font = @"Roboto";
 }];
-[elegantSheet setCancelButtonWithTitle:@"Nevermind!" block:nil];
+[elegantSheet setCancelButtonWithTitle:@"Thanks!" block:nil];
 [elegantSheet showInView:self.view];
 ````
 
