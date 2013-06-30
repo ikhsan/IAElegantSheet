@@ -25,6 +25,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self showElegantSheet:nil];
+}
+
 - (IBAction)showElegantSheet:(UIButton *)button {
     NSDictionary *dict = @{
         @"Elegant to code" : @"Using blocks handler",
@@ -37,11 +43,14 @@
         [elegantSheet addButtonsWithTitle:title block:^{ [self alert:message]; }];
     }];
     
-    [elegantSheet setCancelButtonWithTitle:@"Thanks!" block:^{
-        NSLog(@"Created by Ikhsan Assaat for 'Back On The Map'");
-        NSLog(@"#backonthemap #objectivechackathon");
-        NSLog(@"https://objectivechackathon.appspot.com/‎");
+    [elegantSheet setDestructiveButtonWithTitle:@"Danger Button" block:^{
+        [self alert:@"Do something dangerous"];
     }];
+    
+    [elegantSheet setCancelButtonWithTitle:@"Thanks!" block:^{
+        NSLog(@"Created by Ikhsan Assaat for 'Back On The Map'. \nhttps://objectivechackathon.appspot.com/‎ \n#backonthemap #objectivechackathon");
+    }];
+    
     [elegantSheet showInView:self.view];
 }
 

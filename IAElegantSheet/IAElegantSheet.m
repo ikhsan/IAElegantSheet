@@ -20,6 +20,7 @@ CGFloat const Alpha = 0.75;
 
 @property (strong, nonatomic) NSMutableArray *buttonTitles;
 @property (strong, nonatomic) NSMutableDictionary *blocks;
+@property (assign, nonatomic) NSInteger destructiveIndex;
 
 @end
 
@@ -48,7 +49,20 @@ CGFloat const Alpha = 0.75;
 		titleLabel.shadowColor = [UIColor blackColor];
 		titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
         titleLabel.font = [UIFont fontWithName:@"RobotoCondensed-Bold" size:titleLabel.font.pointSize];
-		[self addSubview:titleLabel];		
+        titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+		[self addSubview:titleLabel];
+        
+        // autolayout code
+        NSDictionary *views = NSDictionaryOfVariableBindings(titleLabel);
+        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[titleLabel]|" options:0 metrics:nil views:views];
+        [self addConstraints:constraints];
+        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[titleLabel(38)]" options:0 metrics:nil views:views];
+        [self addConstraints:constraints];
+		
+        // default destructive index
+        _destructiveIndex = -1;
+        
+        self.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 	
 	return self;
@@ -56,8 +70,17 @@ CGFloat const Alpha = 0.75;
 
 #pragma mark - Adding buttons and setting cancel button
 
-- (void)setDestructiveButtonWithTitle:(NSString *)title block:(void (^)())block {
+- (void)setDestructiveButtonWithTitle:(NSString *)title block:(void (^)())block {    
+    if (self.destructiveIndex >= 0) {
+        NSString *oldTitle = self.buttonTitles[self.destructiveIndex];
+        [self.buttonTitles removeObjectAtIndex:self.destructiveIndex];
+        [self.blocks removeObjectForKey:oldTitle];
+    }
     
+    NSInteger index = self.buttonTitles.count-1;
+    [self.buttonTitles insertObject:title atIndex:index];
+    self.blocks[title] = [block copy];
+    self.destructiveIndex = index;
 }
 
 - (void)setCancelButtonWithTitle:(NSString *)title block:(void(^)())block {
@@ -94,27 +117,25 @@ CGFloat const Alpha = 0.75;
 
 - (void)prepare:(CGRect)frame {
 	CGRect f = CGRectMake(0.0, 0.0, frame.size.width, 38.0);
-	[[self viewWithTag:TitleTag] setFrame:f];
-	CGFloat cursor = f.size.height;
-	
 	UILabel *titleLabel = (UILabel *)[self viewWithTag:TitleTag];
+    titleLabel.frame = f;
 	titleLabel.backgroundColor = self.baseColor;
-	
-	UIFont *buttonFont = [UIFont fontWithName:@"RobotoCondensed-Regular" size:14.0];
-	for (NSString *buttonTitle in self.buttonTitles) {
-		f.origin.y = cursor;
-		f.size.height = 32.0;
+    
+	__block CGFloat cursor = f.size.height;
+    UIFont *buttonFont = [UIFont fontWithName:@"RobotoCondensed-Regular" size:14.0];
+    [self.buttonTitles enumerateObjectsUsingBlock:^(NSString *buttonTitle, NSUInteger index, BOOL *stop) {
+        CGFloat labelHeight = 32.0;
+        
 		UIButton *optionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		
-		NSInteger index = [self.buttonTitles indexOfObjectIdenticalTo:buttonTitle];
 		optionButton.tag = index;
-		optionButton.frame = f;
-		optionButton.backgroundColor = [self.baseColor colorWithAlphaComponent:Alpha];
+        optionButton.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        UIColor *buttonColor = (self.destructiveIndex != index)? self.baseColor : [UIColor redColor];
+		optionButton.backgroundColor = [buttonColor colorWithAlphaComponent:Alpha];
 		optionButton.titleLabel.font = buttonFont;
 		optionButton.titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
 		optionButton.adjustsImageWhenHighlighted = YES;
         
-        optionButton.titleLabel.font = [UIFont fontWithName:@"RobotoCondensed-Regular" size:titleLabel.font.pointSize];
 		[optionButton setTitle:[buttonTitle uppercaseString] forState:UIControlStateNormal];
 		
 		[optionButton addTarget:self action:@selector(callBlocks:) forControlEvents:UIControlEventTouchUpInside];
@@ -122,15 +143,31 @@ CGFloat const Alpha = 0.75;
 		[optionButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpOutside];
 		
 		[self addSubview:optionButton];
-		cursor += f.size.height;
+        
+        // autolayout code
+        NSDictionary *views = NSDictionaryOfVariableBindings(optionButton);
+        NSDictionary *metrics = @{ @"height": @(labelHeight), @"cursor" : @(cursor) };
+        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[optionButton]|" options:0 metrics:metrics views:views];
+        [self addConstraints:constraints];
+        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-cursor-[optionButton(height)]" options:0 metrics:metrics views:views];
+        [self addConstraints:constraints];
+        
+		cursor += labelHeight;
 		
 		if (index != ([self.buttonTitles count] - 1)) {
-			CGRect f = CGRectMake(CGRectGetMinX(frame) + 4.0, cursor - 1.0, CGRectGetMaxX(frame) - 8.0, .5);
-			UIView *line = [[UIView alloc] initWithFrame:f];
+			UIView *line = [[UIView alloc] init];
+            line.translatesAutoresizingMaskIntoConstraints = NO;
 			[line setBackgroundColor:[UIColor colorWithWhite:.9 alpha:0.5]];
 			[self addSubview:line];
+            
+            NSDictionary *views = NSDictionaryOfVariableBindings(line);
+            NSDictionary *metrics = @{ @"padding": @4, @"topMargin" : @(cursor-1), @"thickness" : @0.5 };
+            NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-padding-[line]-padding-|" options:0 metrics:metrics views:views];
+            [self addConstraints:constraints];
+            constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topMargin-[line(thickness)]" options:0 metrics:metrics views:views];
+            [self addConstraints:constraints];
 		}
-	}
+    }];
 	
 	self.frame = CGRectMake(0.0, 0.0, frame.size.width, cursor);
 }
@@ -150,12 +187,12 @@ CGFloat const Alpha = 0.75;
 
 - (void)buttonHighlight:(UIButton *)button {	
 	// darken color
-	[button setBackgroundColor:[self.baseColor colorWithAlphaComponent:Alpha+0.05]];
+	[button setBackgroundColor:[button.backgroundColor colorWithAlphaComponent:Alpha+0.05]];
 }
 
 - (void)buttonNormal:(UIButton *)button {
 	// normalize color
-	[button setBackgroundColor:[self.baseColor colorWithAlphaComponent:Alpha]];
+	[button setBackgroundColor:[button.backgroundColor colorWithAlphaComponent:Alpha]];
 }
 
 #pragma mark - Showing and dismissing methods
@@ -164,26 +201,32 @@ CGFloat const Alpha = 0.75;
 	[self prepare:view.frame];
 	
 	// place to the bottom
-	CGRect f = self.frame;
-	f.origin.y = view.frame.size.height;
-	self.frame = f;
 	[view addSubview:self];
-	
+    
+    // adding autolayout code
+    UIView *elegantSheet = self;
+    NSDictionary *metrics = @{ @"height": @(self.frame.size.height), @"minusHeight" : @(-self.frame.size.height) };
+    NSDictionary *views = NSDictionaryOfVariableBindings(elegantSheet);
+    
+    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[elegantSheet(height)]|" options:0 metrics:metrics views:views];
+    [view addConstraints:verticalConstraints];
+    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[elegantSheet]|" options:0 metrics:nil views:views];
+    [view addConstraints:horizontalConstraints];
+    
 	// slide from bottom
-	f.origin.y = view.frame.size.height - self.frame.size.height;
-	[UIView animateWithDuration:TransitionDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		self.frame = f;
-	} completion:nil];
+    self.transform = CGAffineTransformMakeTranslation(0, self.bounds.size.height);
+    [UIView animateWithDuration:TransitionDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.transform = CGAffineTransformMakeTranslation(0, 0);
+    } completion:NULL];
 }
 
 - (void)dismiss {
 	if (!self.superview) return;
 	
-	CGRect f = self.frame;
-	f.origin.y += f.size.height;
-	
+    __block CGRect f = self.frame;
 	[UIView animateWithDuration:TransitionDuration animations:^{
-		self.frame = f;
+        f.origin.y += f.size.height;
+        self.frame = f;
 	} completion:^(BOOL finished) {
 		[self removeFromSuperview];
 	}];
