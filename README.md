@@ -6,9 +6,9 @@ Another UIActionSheet but more elegant. Elegant to code and elegant to see. Usin
 
 Yes! :) We can't just get enough of block based handler are we. 
 
-I've built it for my latest/current project, and I built it also to learn on how to built action sheet using block handlers.
+I've built it for my latest/current project, and I built it also to learn on how to built action sheet using block handlers. It also uses Roboto Condensed as the default font. Also, support adapting portrait and landscape orientation thorugh auto layout.
 
-Currently still WIP though.
+Currently still WIP, but already usable though.
 
 ## Preview
 ![image](https://dl.dropboxusercontent.com/u/10627916/elegantsheet-portrait.png)

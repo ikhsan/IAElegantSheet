@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4698617F1781219900915A7B /* IAElegantSheet.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4698617E1781219900915A7B /* IAElegantSheet.bundle */; };
 		46E80C47177FFD3E001E2DFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C46177FFD3E001E2DFF /* Foundation.framework */; };
 		46E80C49177FFD3E001E2DFF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C48177FFD3E001E2DFF /* CoreGraphics.framework */; };
 		46E80C4B177FFD3E001E2DFF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C4A177FFD3E001E2DFF /* UIKit.framework */; };
@@ -24,9 +25,6 @@
 		46EC1DB6177FFF1900B011FA /* IAElegantSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1DB3177FFF1900B011FA /* IAElegantSheetTests.m */; };
 		46EC1DC11780010600B011FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1DC01780010600B011FA /* main.m */; };
 		46EC1DC21780080100B011FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DA5177FFF0900B011FA /* Main.storyboard */; };
-		46EC1DC717800D3F00B011FA /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DC417800D3F00B011FA /* RobotoCondensed-Bold.ttf */; };
-		46EC1DC817800D3F00B011FA /* RobotoCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DC517800D3F00B011FA /* RobotoCondensed-Light.ttf */; };
-		46EC1DC917800D3F00B011FA /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DC617800D3F00B011FA /* RobotoCondensed-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4698617E1781219900915A7B /* IAElegantSheet.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IAElegantSheet.bundle; sourceTree = "<group>"; };
 		46E80C43177FFD3E001E2DFF /* Elegant Sheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elegant Sheet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E80C46177FFD3E001E2DFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		46E80C48177FFD3E001E2DFF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,9 +60,6 @@
 		46EC1DB3177FFF1900B011FA /* IAElegantSheetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAElegantSheetTests.m; sourceTree = "<group>"; };
 		46EC1DBF1780010600B011FA /* IAElegantSheet-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IAElegantSheet-Prefix.pch"; sourceTree = "<group>"; };
 		46EC1DC01780010600B011FA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		46EC1DC417800D3F00B011FA /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
-		46EC1DC517800D3F00B011FA /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
-		46EC1DC617800D3F00B011FA /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +133,7 @@
 		46EC1D9C177FFEED00B011FA /* IAElegantSheet */ = {
 			isa = PBXGroup;
 			children = (
-				46EC1DC317800D3F00B011FA /* Fonts */,
+				4698617E1781219900915A7B /* IAElegantSheet.bundle */,
 				46EC1D9D177FFEED00B011FA /* IAElegantSheet.h */,
 				46EC1D9E177FFEED00B011FA /* IAElegantSheet.m */,
 			);
@@ -175,16 +171,6 @@
 			);
 			path = "Other Sources";
 			sourceTree = SOURCE_ROOT;
-		};
-		46EC1DC317800D3F00B011FA /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				46EC1DC417800D3F00B011FA /* RobotoCondensed-Bold.ttf */,
-				46EC1DC517800D3F00B011FA /* RobotoCondensed-Light.ttf */,
-				46EC1DC617800D3F00B011FA /* RobotoCondensed-Regular.ttf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -267,11 +253,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				46EC1DC21780080100B011FA /* Main.storyboard in Resources */,
-				46EC1DC717800D3F00B011FA /* RobotoCondensed-Bold.ttf in Resources */,
-				46EC1DC917800D3F00B011FA /* RobotoCondensed-Regular.ttf in Resources */,
+				4698617F1781219900915A7B /* IAElegantSheet.bundle in Resources */,
 				46EC1DAE177FFF0900B011FA /* Images.xcassets in Resources */,
 				46EC1DAD177FFF0900B011FA /* IAElegantSheet-Info.plist in Resources */,
-				46EC1DC817800D3F00B011FA /* RobotoCondensed-Light.ttf in Resources */,
 				46EC1DAC177FFF0900B011FA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
