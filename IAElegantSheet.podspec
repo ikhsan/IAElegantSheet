@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/ixnixnixn/IAElegantSheet.git", :tag => s.version.to_s }
   s.platform     = :ios, '6.0'
   s.source_files = 'IAElegantSheet/*.{h,m}'
-  s.resources    = 'Resources/*.ttf'
+  s.resources    = 'Resources/'
   s.requires_arc = true
   
   s.post_install do |library_representation|
