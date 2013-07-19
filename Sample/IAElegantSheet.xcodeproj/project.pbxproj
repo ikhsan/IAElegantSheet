@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4698617F1781219900915A7B /* IAElegantSheet.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4698617E1781219900915A7B /* IAElegantSheet.bundle */; };
+		46265CC11786B43700D69818 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46265CC01786B43700D69818 /* Default-568h@2x.png */; };
+		46BBB53E17992530001C29EB /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46BBB53B17992530001C29EB /* RobotoCondensed-Bold.ttf */; };
+		46BBB53F17992530001C29EB /* RobotoCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46BBB53C17992530001C29EB /* RobotoCondensed-Light.ttf */; };
+		46BBB54017992530001C29EB /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46BBB53D17992530001C29EB /* RobotoCondensed-Regular.ttf */; };
 		46E80C47177FFD3E001E2DFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C46177FFD3E001E2DFF /* Foundation.framework */; };
 		46E80C49177FFD3E001E2DFF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C48177FFD3E001E2DFF /* CoreGraphics.framework */; };
 		46E80C4B177FFD3E001E2DFF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C4A177FFD3E001E2DFF /* UIKit.framework */; };
@@ -18,13 +21,11 @@
 		46EC1D9B177FFE9900B011FA /* IAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1D99177FFE9900B011FA /* IAViewController.m */; };
 		46EC1D9F177FFEED00B011FA /* IAElegantSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1D9E177FFEED00B011FA /* IAElegantSheet.m */; };
 		46EC1DAC177FFF0900B011FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DA7177FFF0900B011FA /* InfoPlist.strings */; };
-		46EC1DAD177FFF0900B011FA /* IAElegantSheet-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DA9177FFF0900B011FA /* IAElegantSheet-Info.plist */; };
 		46EC1DAE177FFF0900B011FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DAA177FFF0900B011FA /* Images.xcassets */; };
 		46EC1DB4177FFF1900B011FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DB0177FFF1900B011FA /* InfoPlist.strings */; };
 		46EC1DB5177FFF1900B011FA /* IAElegantSheetTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DB2177FFF1900B011FA /* IAElegantSheetTests-Info.plist */; };
 		46EC1DB6177FFF1900B011FA /* IAElegantSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1DB3177FFF1900B011FA /* IAElegantSheetTests.m */; };
 		46EC1DC11780010600B011FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1DC01780010600B011FA /* main.m */; };
-		46EC1DC21780080100B011FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DA5177FFF0900B011FA /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4698617E1781219900915A7B /* IAElegantSheet.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IAElegantSheet.bundle; sourceTree = "<group>"; };
+		46265CC01786B43700D69818 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		46BBB53B17992530001C29EB /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
+		46BBB53C17992530001C29EB /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
+		46BBB53D17992530001C29EB /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
 		46E80C43177FFD3E001E2DFF /* Elegant Sheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elegant Sheet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E80C46177FFD3E001E2DFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		46E80C48177FFD3E001E2DFF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -51,7 +55,6 @@
 		46EC1D99177FFE9900B011FA /* IAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAViewController.m; sourceTree = "<group>"; };
 		46EC1D9D177FFEED00B011FA /* IAElegantSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAElegantSheet.h; sourceTree = "<group>"; };
 		46EC1D9E177FFEED00B011FA /* IAElegantSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAElegantSheet.m; sourceTree = "<group>"; };
-		46EC1DA6177FFF0900B011FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		46EC1DA8177FFF0900B011FA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		46EC1DA9177FFF0900B011FA /* IAElegantSheet-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IAElegantSheet-Info.plist"; sourceTree = "<group>"; };
 		46EC1DAA177FFF0900B011FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -86,6 +89,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46BBB53A17992530001C29EB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				46BBB53B17992530001C29EB /* RobotoCondensed-Bold.ttf */,
+				46BBB53C17992530001C29EB /* RobotoCondensed-Light.ttf */,
+				46BBB53D17992530001C29EB /* RobotoCondensed-Regular.ttf */,
+			);
+			name = Resources;
+			path = ../Sample/Resources/Resources;
+			sourceTree = "<group>";
+		};
 		46E80C3A177FFD3E001E2DFF = {
 			isa = PBXGroup;
 			children = (
@@ -133,9 +147,9 @@
 		46EC1D9C177FFEED00B011FA /* IAElegantSheet */ = {
 			isa = PBXGroup;
 			children = (
-				4698617E1781219900915A7B /* IAElegantSheet.bundle */,
 				46EC1D9D177FFEED00B011FA /* IAElegantSheet.h */,
 				46EC1D9E177FFEED00B011FA /* IAElegantSheet.m */,
+				46BBB53A17992530001C29EB /* Resources */,
 			);
 			name = IAElegantSheet;
 			path = ../IAElegantSheet;
@@ -144,7 +158,7 @@
 		46EC1DA4177FFF0900B011FA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				46EC1DA5177FFF0900B011FA /* Main.storyboard */,
+				46265CC01786B43700D69818 /* Default-568h@2x.png */,
 				46EC1DA7177FFF0900B011FA /* InfoPlist.strings */,
 				46EC1DA9177FFF0900B011FA /* IAElegantSheet-Info.plist */,
 				46EC1DAA177FFF0900B011FA /* Images.xcassets */,
@@ -252,11 +266,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46EC1DC21780080100B011FA /* Main.storyboard in Resources */,
-				4698617F1781219900915A7B /* IAElegantSheet.bundle in Resources */,
 				46EC1DAE177FFF0900B011FA /* Images.xcassets in Resources */,
-				46EC1DAD177FFF0900B011FA /* IAElegantSheet-Info.plist in Resources */,
 				46EC1DAC177FFF0900B011FA /* InfoPlist.strings in Resources */,
+				46265CC11786B43700D69818 /* Default-568h@2x.png in Resources */,
+				46BBB53E17992530001C29EB /* RobotoCondensed-Bold.ttf in Resources */,
+				46BBB53F17992530001C29EB /* RobotoCondensed-Light.ttf in Resources */,
+				46BBB54017992530001C29EB /* RobotoCondensed-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,14 +317,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		46EC1DA5177FFF0900B011FA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				46EC1DA6177FFF0900B011FA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		46EC1DA7177FFF0900B011FA /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

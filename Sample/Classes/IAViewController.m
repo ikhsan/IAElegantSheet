@@ -17,7 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view, typically from a nib.
+    [self addButton];
+    [self.view setBackgroundColor:[UIColor colorWithWhite:.9 alpha:1.0]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,7 +28,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)showElegantSheet:(UIButton *)button {
+- (void)addButton {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button setTitle:@"Show Elegance" forState:UIControlStateNormal];
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    [button addTarget:self action:@selector(showElegantSheet:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    
+    // autolayout code
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeCenterX multiplier:1.f constant:0.f];
+    [self.view addConstraint:constraint];
+    
+    constraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeCenterY multiplier:1.f constant:0.f];
+    [self.view addConstraint:constraint];
+}
+
+- (void)showElegantSheet:(UIButton *)button {
     NSDictionary *dict = @{
         @"Elegant to code" : @"Using blocks handler",
         @"Elegant to see" : @"Using custom views",
