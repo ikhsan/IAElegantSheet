@@ -7,6 +7,7 @@
 //
 
 #import "IAElegantSheet.h"
+#import <CoreText/CoreText.h>
 
 NSString *const ButtonTitleKey = @"ButtonTitle";
 NSString *const ButtonBlockKey = @"ButtonBlock";
@@ -15,6 +16,43 @@ NSString *const DefaultCancel = @"Cancel";
 int const TitleTag = 9999;
 CGFloat const TransitionDuration = .2;
 CGFloat const Alpha = 0.75;
+
+@interface UIFont (ElegantFont)
+
++ (UIFont *)elegantFontWithSize:(CGFloat)size;
++ (UIFont *)boldElegantFontWithSize:(CGFloat)size;
+
+@end
+
+@implementation UIFont (ElegantFont)
+
++ (UIFont *)elegantFontWithSize:(CGFloat)size {
+    static NSString *fontName = @"RobotoCondensed-Regular";
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSURL * url = [[NSBundle mainBundle] URLForResource:fontName withExtension:@"ttf"];
+		CFErrorRef error;
+        CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error);
+        error = nil;
+    });
+    
+    return [UIFont fontWithName:fontName size:size];
+}
+
++ (UIFont *)boldElegantFontWithSize:(CGFloat)size {
+    static NSString *fontName = @"RobotoCondensed-Bold";
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSURL * url = [[NSBundle mainBundle] URLForResource:fontName withExtension:@"ttf"];
+		CFErrorRef error;
+        CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error);
+        error = nil;
+    });
+    
+    return [UIFont fontWithName:fontName size:size];
+}
+
+@end
 
 @interface IAElegantSheet()
 
@@ -48,7 +86,7 @@ CGFloat const Alpha = 0.75;
 		titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
 		titleLabel.shadowColor = [UIColor blackColor];
 		titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
-        titleLabel.font = [UIFont fontWithName:@"RobotoCondensed-Bold" size:titleLabel.font.pointSize];
+        titleLabel.font = [UIFont boldElegantFontWithSize:titleLabel.font.pointSize];
         titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 		[self addSubview:titleLabel];
         
@@ -122,7 +160,7 @@ CGFloat const Alpha = 0.75;
 	titleLabel.backgroundColor = self.baseColor;
     
 	__block CGFloat cursor = f.size.height;
-    UIFont *buttonFont = [UIFont fontWithName:@"RobotoCondensed-Regular" size:14.0];
+    UIFont *buttonFont = [UIFont elegantFontWithSize:14.0];
     [self.buttonTitles enumerateObjectsUsingBlock:^(NSString *buttonTitle, NSUInteger index, BOOL *stop) {
         CGFloat labelHeight = 32.0;
         
