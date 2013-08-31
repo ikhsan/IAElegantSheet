@@ -89,7 +89,11 @@ CGFloat const Alpha = 0.75;
 		_baseColor = [UIColor blackColor];
 		
 		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        #ifdef IAElegantSheetForceUpperCase
 		titleLabel.text = [title uppercaseString];
+        #else
+        titleLabel.text = title;
+        #endif
 		titleLabel.tag = TitleTag;
 		titleLabel.textAlignment = NSTextAlignmentCenter;
 		titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
@@ -193,8 +197,11 @@ CGFloat const Alpha = 0.75;
 		optionButton.titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
 		optionButton.adjustsImageWhenHighlighted = YES;
         
+        #ifdef IAElegantSheetForceUpperCase
 		[optionButton setTitle:[buttonTitle uppercaseString] forState:UIControlStateNormal];
-		
+        #else
+        [optionButton setTitle:buttonTitle forState:UIControlStateNormal];
+        #endif
 		[optionButton addTarget:self action:@selector(callBlocks:) forControlEvents:UIControlEventTouchUpInside];
 		[optionButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
 		[optionButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpOutside];
