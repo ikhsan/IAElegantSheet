@@ -31,16 +31,31 @@
 - (void)addButton {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button setTitle:@"Show Elegance" forState:UIControlStateNormal];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
+    [button setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin];
+    if ([button respondsToSelector:@selector(setTranslatesAutoresizingMaskIntoConstraints:)])
+        button.translatesAutoresizingMaskIntoConstraints = NO;
+    else
+    {
+        button.frame = CGRectMake(0,0,200,44);
+        button.center = self.view.center;
+    }
     [button addTarget:self action:@selector(showElegantSheet:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     
     // autolayout code
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeCenterX multiplier:1.f constant:0.f];
-    [self.view addConstraint:constraint];
-    
-    constraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeCenterY multiplier:1.f constant:0.f];
-    [self.view addConstraint:constraint];
+    if ([self.view respondsToSelector:@selector(addConstraint:)])
+    {
+        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeCenterX multiplier:1.f constant:0.f];
+        [self.view addConstraint:constraint];
+        
+        constraint = [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:button.superview attribute:NSLayoutAttributeCenterY multiplier:1.f constant:0.f];
+        [self.view addConstraint:constraint];
+    }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
 }
 
 - (void)showElegantSheet:(UIButton *)button {
