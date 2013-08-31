@@ -87,20 +87,24 @@ CGFloat const Alpha = 0.75;
 		titleLabel.shadowColor = [UIColor blackColor];
 		titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
         titleLabel.font = [UIFont boldElegantFontWithSize:titleLabel.font.pointSize];
-        titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        if ([titleLabel respondsToSelector:@selector(setTranslatesAutoresizingMaskIntoConstraints:)])
+            titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 		[self addSubview:titleLabel];
         
         // autolayout code
-        NSDictionary *views = NSDictionaryOfVariableBindings(titleLabel);
-        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[titleLabel]|" options:0 metrics:nil views:views];
-        [self addConstraints:constraints];
-        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[titleLabel(38)]" options:0 metrics:nil views:views];
-        [self addConstraints:constraints];
-		
+        if ([self respondsToSelector:@selector(addConstraints:)])
+        {
+            NSDictionary *views = NSDictionaryOfVariableBindings(titleLabel);
+            NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[titleLabel]|" options:0 metrics:nil views:views];
+            [self addConstraints:constraints];
+            constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[titleLabel(38)]" options:0 metrics:nil views:views];
+            [self addConstraints:constraints];
+		}
         // default destructive index
         _destructiveIndex = -1;
         
-        self.translatesAutoresizingMaskIntoConstraints = NO;
+        if ([self respondsToSelector:@selector(setTranslatesAutoresizingMaskIntoConstraints:)])        
+            self.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 	
 	return self;
@@ -166,7 +170,8 @@ CGFloat const Alpha = 0.75;
         
 		UIButton *optionButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		optionButton.tag = index;
-        optionButton.translatesAutoresizingMaskIntoConstraints = NO;
+        if ([optionButton respondsToSelector:@selector(setTranslatesAutoresizingMaskIntoConstraints:)])
+            optionButton.translatesAutoresizingMaskIntoConstraints = NO;
         
         UIColor *buttonColor = (self.destructiveIndex != index)? self.baseColor : [UIColor redColor];
 		optionButton.backgroundColor = [buttonColor colorWithAlphaComponent:Alpha];
@@ -183,27 +188,34 @@ CGFloat const Alpha = 0.75;
 		[self addSubview:optionButton];
         
         // autolayout code
-        NSDictionary *views = NSDictionaryOfVariableBindings(optionButton);
-        NSDictionary *metrics = @{ @"height": @(labelHeight), @"cursor" : @(cursor) };
-        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[optionButton]|" options:0 metrics:metrics views:views];
-        [self addConstraints:constraints];
-        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-cursor-[optionButton(height)]" options:0 metrics:metrics views:views];
-        [self addConstraints:constraints];
+        if ([self respondsToSelector:@selector(addConstraints:)])
+        {
+            NSDictionary *views = NSDictionaryOfVariableBindings(optionButton);
+            NSDictionary *metrics = @{ @"height": @(labelHeight), @"cursor" : @(cursor) };
+            NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[optionButton]|" options:0 metrics:metrics views:views];
+            [self addConstraints:constraints];
+            constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-cursor-[optionButton(height)]" options:0 metrics:metrics views:views];
+            [self addConstraints:constraints];
+        }
         
 		cursor += labelHeight;
 		
 		if (index != ([self.buttonTitles count] - 1)) {
 			UIView *line = [[UIView alloc] init];
-            line.translatesAutoresizingMaskIntoConstraints = NO;
+            if ([line respondsToSelector:@selector(setTranslatesAutoresizingMaskIntoConstraints:)])
+                line.translatesAutoresizingMaskIntoConstraints = NO;
 			[line setBackgroundColor:[UIColor colorWithWhite:.9 alpha:0.5]];
 			[self addSubview:line];
             
-            NSDictionary *views = NSDictionaryOfVariableBindings(line);
-            NSDictionary *metrics = @{ @"padding": @4, @"topMargin" : @(cursor-1), @"thickness" : @0.5 };
-            NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-padding-[line]-padding-|" options:0 metrics:metrics views:views];
-            [self addConstraints:constraints];
-            constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topMargin-[line(thickness)]" options:0 metrics:metrics views:views];
-            [self addConstraints:constraints];
+            if ([self respondsToSelector:@selector(addConstraints:)])
+            {
+                NSDictionary *views = NSDictionaryOfVariableBindings(line);
+                NSDictionary *metrics = @{ @"padding": @4, @"topMargin" : @(cursor-1), @"thickness" : @0.5 };
+                NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-padding-[line]-padding-|" options:0 metrics:metrics views:views];
+                [self addConstraints:constraints];
+                constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topMargin-[line(thickness)]" options:0 metrics:metrics views:views];
+                [self addConstraints:constraints];
+            }
 		}
     }];
 	
@@ -244,12 +256,15 @@ CGFloat const Alpha = 0.75;
     // adding autolayout code
     UIView *elegantSheet = self;
     NSDictionary *metrics = @{ @"height": @(self.frame.size.height), @"minusHeight" : @(-self.frame.size.height) };
-    NSDictionary *views = NSDictionaryOfVariableBindings(elegantSheet);
     
-    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[elegantSheet(height)]|" options:0 metrics:metrics views:views];
-    [view addConstraints:verticalConstraints];
-    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[elegantSheet]|" options:0 metrics:nil views:views];
-    [view addConstraints:horizontalConstraints];
+    if ([view respondsToSelector:@selector(addConstraints:)])
+    {
+        NSDictionary *views = NSDictionaryOfVariableBindings(elegantSheet);        
+        NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[elegantSheet(height)]|" options:0 metrics:metrics views:views];
+        [view addConstraints:verticalConstraints];
+        NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[elegantSheet]|" options:0 metrics:nil views:views];
+        [view addConstraints:horizontalConstraints];
+    }
     
 	// slide from bottom
     self.transform = CGAffineTransformMakeTranslation(0, self.bounds.size.height);
