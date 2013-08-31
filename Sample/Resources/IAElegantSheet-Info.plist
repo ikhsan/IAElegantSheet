@@ -29,8 +29,11 @@
 		<string>armv7</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
+	<array/>
+	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>

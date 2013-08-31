@@ -13,7 +13,7 @@ NSString *const ButtonTitleKey = @"ButtonTitle";
 NSString *const ButtonBlockKey = @"ButtonBlock";
 NSString *const DefaultCancel = @"Cancel";
 
-int const TitleTag = 9999;
+int const TitleTag = -9999;
 CGFloat const TransitionDuration = .2;
 CGFloat const Alpha = 0.75;
 
@@ -70,7 +70,10 @@ CGFloat const Alpha = 0.75;
 
 - (id)initWithTitle:(NSString *)title {
 	self = [self initWithFrame:CGRectZero];
-	if (self) {
+	if (self)
+    {
+        //[self setBackgroundColor:[UIColor redColor]];
+        
 		// adding cancel name and block
 		_buttonTitles = [NSMutableArray arrayWithObject:DefaultCancel];
 		void (^cancel)(void) = ^{};
@@ -105,6 +108,8 @@ CGFloat const Alpha = 0.75;
         
         if ([self respondsToSelector:@selector(setTranslatesAutoresizingMaskIntoConstraints:)])        
             self.translatesAutoresizingMaskIntoConstraints = NO;
+        else
+            self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
 	}
 	
 	return self;
@@ -157,7 +162,8 @@ CGFloat const Alpha = 0.75;
 
 #pragma mark - Preparation before showing view
 
-- (void)prepare:(CGRect)frame {
+- (void)prepare:(CGRect)frame
+{
 	CGRect f = CGRectMake(0.0, 0.0, frame.size.width, 38.0);
 	UILabel *titleLabel = (UILabel *)[self viewWithTag:TitleTag];
     titleLabel.frame = f;
@@ -172,6 +178,8 @@ CGFloat const Alpha = 0.75;
 		optionButton.tag = index;
         if ([optionButton respondsToSelector:@selector(setTranslatesAutoresizingMaskIntoConstraints:)])
             optionButton.translatesAutoresizingMaskIntoConstraints = NO;
+        else
+            optionButton.frame = CGRectMake(0,cursor,frame.size.width,labelHeight);
         
         UIColor *buttonColor = (self.destructiveIndex != index)? self.baseColor : [UIColor redColor];
 		optionButton.backgroundColor = [buttonColor colorWithAlphaComponent:Alpha];
@@ -204,6 +212,8 @@ CGFloat const Alpha = 0.75;
 			UIView *line = [[UIView alloc] init];
             if ([line respondsToSelector:@selector(setTranslatesAutoresizingMaskIntoConstraints:)])
                 line.translatesAutoresizingMaskIntoConstraints = NO;
+            //else
+            //    line.frame = CGRectMake(0,optionButton.frame.origin.y+optionButton.frame.size.height,frame.size.width,1);
 			[line setBackgroundColor:[UIColor colorWithWhite:.9 alpha:0.5]];
 			[self addSubview:line];
             
@@ -219,7 +229,32 @@ CGFloat const Alpha = 0.75;
 		}
     }];
 	
-	self.frame = CGRectMake(0.0, 0.0, frame.size.width, cursor);
+	self.frame = CGRectMake(0.0,[self respondsToSelector:@selector(addConstraints:)] ? 0.0 : frame.size.height-cursor, frame.size.width, cursor);
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    if (![self respondsToSelector:@selector(setTranslatesAutoresizingMaskIntoConstraints:)])
+    {
+        CGRect frame = self.superview.bounds;
+        CGRect f = CGRectMake(0.0, 0.0, frame.size.width, 38.0);
+        UILabel *titleLabel = (UILabel *)[self viewWithTag:TitleTag];
+        titleLabel.frame = f;
+        
+        __block CGFloat cursor = f.size.height;
+        [self.subviews enumerateObjectsUsingBlock:^(UIView *v, NSUInteger index, BOOL *stop)
+        {
+            CGFloat labelHeight = 32.0;
+            
+            if ([v isKindOfClass:[UIButton class]])
+            {
+                UIButton *optionButton = (UIButton*)v;
+                optionButton.frame = CGRectMake(0,cursor,frame.size.width,labelHeight);
+                cursor += labelHeight;
+            }
+        }];
+    }
 }
 
 - (void)callBlocks:(UIButton *)button {
@@ -248,7 +283,7 @@ CGFloat const Alpha = 0.75;
 #pragma mark - Showing and dismissing methods
 
 - (void)showInView:(UIView *)view {
-	[self prepare:view.frame];
+	[self prepare:view.bounds];
 	
 	// place to the bottom
 	[view addSubview:self];
@@ -283,6 +318,25 @@ CGFloat const Alpha = 0.75;
 	} completion:^(BOOL finished) {
 		[self removeFromSuperview];
 	}];
+}
+
+#pragma mark - Orientation
+
+- (void)willMoveToSuperview:(UIView *)newSuperview
+{
+    [super willMoveToSuperview:newSuperview];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+- (void)removeFromSuperview
+{
+    [super removeFromSuperview];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+- (void)orientationChanged:(NSNotification*)n
+{
+    [self setNeedsLayout];
 }
 
 @end

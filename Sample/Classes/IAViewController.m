@@ -53,6 +53,11 @@
     }
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return YES;
+}
+
 - (void)showElegantSheet:(UIButton *)button {
     NSDictionary *dict = @{
         @"Elegant to code" : @"Using blocks handler",
