@@ -31,9 +31,12 @@ CGFloat const Alpha = 0.75;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSURL * url = [[NSBundle mainBundle] URLForResource:fontName withExtension:@"ttf"];
-		CFErrorRef error;
-        CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error);
-        error = nil;
+        if (url!=nil)
+        {
+            CFErrorRef error;
+            CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error);
+            error = nil;
+        }
     });
     
     return [UIFont fontWithName:fontName size:size];
@@ -44,9 +47,12 @@ CGFloat const Alpha = 0.75;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSURL * url = [[NSBundle mainBundle] URLForResource:fontName withExtension:@"ttf"];
-		CFErrorRef error;
-        CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error);
-        error = nil;
+        if (url!=nil)
+        {
+            CFErrorRef error;
+            CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error);
+            error = nil;
+        }
     });
     
     return [UIFont fontWithName:fontName size:size];
