@@ -9,31 +9,29 @@
 #import "IAElegantSheet.h"
 #import <CoreText/CoreText.h>
 
-NSString *const ButtonTitleKey = @"ButtonTitle";
-NSString *const ButtonBlockKey = @"ButtonBlock";
-NSString *const DefaultCancel = @"Cancel";
+static NSString *const kButtonTitleKey = @"ButtonTitle";
+static NSString *const kButtonBlockKey = @"ButtonBlock";
+static NSString *const kDefaultCancel = @"Cancel";
 
-int const TitleTag = 9999;
-CGFloat const TransitionDuration = .2;
-CGFloat const Alpha = 0.75;
+static const CGFloat kTransitionDuration = 0.2f;
+static CGFloat const kAlpha = 0.75;
 
-@interface UIFont (ElegantFont)
+//int const TitleTag = 9999;
+
+@interface UIFont (ElegantSheet)
 
 + (UIFont *)elegantFontWithSize:(CGFloat)size;
 + (UIFont *)boldElegantFontWithSize:(CGFloat)size;
 
 @end
 
-@implementation UIFont (ElegantFont)
+@implementation UIFont (ElegantSheet)
 
 + (UIFont *)elegantFontWithSize:(CGFloat)size {
     static NSString *fontName = @"RobotoCondensed-Regular";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSURL * url = [[NSBundle mainBundle] URLForResource:fontName withExtension:@"ttf"];
-		CFErrorRef error;
-        CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error);
-        error = nil;
+        [self loadFont:fontName];
     });
     
     return [UIFont fontWithName:fontName size:size];
@@ -43,13 +41,17 @@ CGFloat const Alpha = 0.75;
     static NSString *fontName = @"RobotoCondensed-Bold";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSURL * url = [[NSBundle mainBundle] URLForResource:fontName withExtension:@"ttf"];
-		CFErrorRef error;
-        CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error);
-        error = nil;
+        [self loadFont:fontName];
     });
     
     return [UIFont fontWithName:fontName size:size];
+}
+
++ (void)loadFont:(NSString *)fontName {
+    NSURL *url = [[NSBundle mainBundle] URLForResource:fontName withExtension:@"ttf"];
+    CFErrorRef error;
+    CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error);
+    error = nil;
 }
 
 @end
@@ -72,16 +74,16 @@ CGFloat const Alpha = 0.75;
 	self = [self initWithFrame:CGRectZero];
 	if (self) {
 		// adding cancel name and block
-		_buttonTitles = [NSMutableArray arrayWithObject:DefaultCancel];
+		_buttonTitles = [NSMutableArray arrayWithObject:kDefaultCancel];
 		void (^cancel)(void) = ^{};
-		_blocks = [NSMutableDictionary dictionaryWithObject:[cancel copy] forKey:DefaultCancel];
+		_blocks = [NSMutableDictionary dictionaryWithObject:[cancel copy] forKey:kDefaultCancel];
 		
 		// adding title label
 		_baseColor = [UIColor blackColor];
 		
 		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		titleLabel.text = [title uppercaseString];
-		titleLabel.tag = TitleTag;
+//		titleLabel.tag = TitleTag;
 		titleLabel.textAlignment = NSTextAlignmentCenter;
 		titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
 		titleLabel.shadowColor = [UIColor blackColor];
@@ -155,7 +157,8 @@ CGFloat const Alpha = 0.75;
 
 - (void)prepare:(CGRect)frame {
 	CGRect f = CGRectMake(0.0, 0.0, frame.size.width, 38.0);
-	UILabel *titleLabel = (UILabel *)[self viewWithTag:TitleTag];
+//	UILabel *titleLabel = (UILabel *)[self viewWithTag:TitleTag];
+    UILabel *titleLabel = [UILabel new];
     titleLabel.frame = f;
 	titleLabel.backgroundColor = self.baseColor;
     
@@ -169,7 +172,7 @@ CGFloat const Alpha = 0.75;
         optionButton.translatesAutoresizingMaskIntoConstraints = NO;
         
         UIColor *buttonColor = (self.destructiveIndex != index)? self.baseColor : [UIColor redColor];
-		optionButton.backgroundColor = [buttonColor colorWithAlphaComponent:Alpha];
+		optionButton.backgroundColor = [buttonColor colorWithAlphaComponent:kAlpha];
 		optionButton.titleLabel.font = buttonFont;
 		optionButton.titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
 		optionButton.adjustsImageWhenHighlighted = YES;
@@ -225,12 +228,12 @@ CGFloat const Alpha = 0.75;
 
 - (void)buttonHighlight:(UIButton *)button {	
 	// darken color
-	[button setBackgroundColor:[button.backgroundColor colorWithAlphaComponent:Alpha+0.05]];
+	[button setBackgroundColor:[button.backgroundColor colorWithAlphaComponent:kAlpha+0.05]];
 }
 
 - (void)buttonNormal:(UIButton *)button {
 	// normalize color
-	[button setBackgroundColor:[button.backgroundColor colorWithAlphaComponent:Alpha]];
+	[button setBackgroundColor:[button.backgroundColor colorWithAlphaComponent:kAlpha]];
 }
 
 #pragma mark - Showing and dismissing methods
@@ -253,7 +256,7 @@ CGFloat const Alpha = 0.75;
     
 	// slide from bottom
     self.transform = CGAffineTransformMakeTranslation(0, self.bounds.size.height);
-    [UIView animateWithDuration:TransitionDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:kTransitionDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.transform = CGAffineTransformMakeTranslation(0, 0);
     } completion:NULL];
 }
@@ -262,7 +265,7 @@ CGFloat const Alpha = 0.75;
 	if (!self.superview) return;
 	
     __block CGRect f = self.frame;
-	[UIView animateWithDuration:TransitionDuration animations:^{
+	[UIView animateWithDuration:kTransitionDuration animations:^{
         f.origin.y += f.size.height;
         self.frame = f;
 	} completion:^(BOOL finished) {

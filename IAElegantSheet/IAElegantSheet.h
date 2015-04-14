@@ -20,5 +20,6 @@
 - (void)setCancelButtonWithTitle:(NSString *)title block:(void(^)())block;
 
 - (void)showInView:(UIView *)view;
+- (void)dismiss;
 
 @end
