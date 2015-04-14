@@ -16,8 +16,6 @@ static NSString *const kDefaultCancel = @"Cancel";
 static const CGFloat kTransitionDuration = 0.2f;
 static CGFloat const kAlpha = 0.75;
 
-//int const TitleTag = 9999;
-
 @interface UIFont (ElegantSheet)
 
 + (UIFont *)elegantFontWithSize:(CGFloat)size;
@@ -58,9 +56,12 @@ static CGFloat const kAlpha = 0.75;
 
 @interface IAElegantSheet()
 
+@property (weak, nonatomic) UILabel *titleLabel;
+
 @property (strong, nonatomic) NSMutableArray *buttonTitles;
 @property (strong, nonatomic) NSMutableDictionary *blocks;
 @property (assign, nonatomic) NSInteger destructiveIndex;
+@property (assign, nonatomic, getter=isShowing) BOOL showing;
 
 @end
 
@@ -83,20 +84,21 @@ static CGFloat const kAlpha = 0.75;
 		
 		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		titleLabel.text = [title uppercaseString];
-//		titleLabel.tag = TitleTag;
 		titleLabel.textAlignment = NSTextAlignmentCenter;
 		titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
 		titleLabel.shadowColor = [UIColor blackColor];
 		titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
         titleLabel.font = [UIFont boldElegantFontWithSize:titleLabel.font.pointSize];
         titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        titleLabel.backgroundColor = _baseColor;
 		[self addSubview:titleLabel];
+        self.titleLabel = titleLabel;
         
         // autolayout code
         NSDictionary *views = NSDictionaryOfVariableBindings(titleLabel);
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[titleLabel]|" options:0 metrics:nil views:views];
         [self addConstraints:constraints];
-        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[titleLabel(38)]" options:0 metrics:nil views:views];
+        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[titleLabel(38)]" options:0 metrics:nil views:views];
         [self addConstraints:constraints];
 		
         // default destructive index
@@ -156,13 +158,8 @@ static CGFloat const kAlpha = 0.75;
 #pragma mark - Preparation before showing view
 
 - (void)prepare:(CGRect)frame {
-	CGRect f = CGRectMake(0.0, 0.0, frame.size.width, 38.0);
-//	UILabel *titleLabel = (UILabel *)[self viewWithTag:TitleTag];
-    UILabel *titleLabel = [UILabel new];
-    titleLabel.frame = f;
-	titleLabel.backgroundColor = self.baseColor;
     
-	__block CGFloat cursor = f.size.height;
+    __block CGFloat cursor = CGRectGetMaxY(self.titleLabel.frame);
     UIFont *buttonFont = [UIFont elegantFontWithSize:14.0];
     [self.buttonTitles enumerateObjectsUsingBlock:^(NSString *buttonTitle, NSUInteger index, BOOL *stop) {
         CGFloat labelHeight = 32.0;
@@ -213,6 +210,8 @@ static CGFloat const kAlpha = 0.75;
 	self.frame = CGRectMake(0.0, 0.0, frame.size.width, cursor);
 }
 
+#pragma mark - Button actions
+
 - (void)callBlocks:(UIButton *)button {
 	[self buttonNormal:button];
 	
@@ -239,6 +238,8 @@ static CGFloat const kAlpha = 0.75;
 #pragma mark - Showing and dismissing methods
 
 - (void)showInView:(UIView *)view {
+    if (self.isShowing) return;
+    
 	[self prepare:view.frame];
 	
 	// place to the bottom
@@ -258,7 +259,9 @@ static CGFloat const kAlpha = 0.75;
     self.transform = CGAffineTransformMakeTranslation(0, self.bounds.size.height);
     [UIView animateWithDuration:kTransitionDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.transform = CGAffineTransformMakeTranslation(0, 0);
-    } completion:NULL];
+    } completion:^(BOOL finished) {
+        self.showing = YES;
+    }];
 }
 
 - (void)dismiss {
@@ -270,6 +273,7 @@ static CGFloat const kAlpha = 0.75;
         self.frame = f;
 	} completion:^(BOOL finished) {
 		[self removeFromSuperview];
+        self.showing = NO;
 	}];
 }
 

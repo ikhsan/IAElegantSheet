@@ -11,6 +11,8 @@
 
 @interface IAViewController ()
 
+@property (strong, nonatomic) IAElegantSheet *sheet;
+
 @end
 
 @implementation IAViewController
@@ -43,27 +45,37 @@
     [self.view addConstraint:constraint];
 }
 
-- (void)showElegantSheet:(UIButton *)button {
-    NSDictionary *dict = @{
-        @"Elegant to code" : @"Using blocks handler",
-        @"Elegant to see" : @"Using custom views",
-        @"Custom font by default" : @"Using Roboto for default font",
-    };
+#pragma mark - Elegant sheet
+
+- (IAElegantSheet *)sheet {
+    if (!_sheet) {
         
-    IAElegantSheet *elegantSheet = [IAElegantSheet elegantSheetWithTitle:@"Elegant Sheet"];
-    [dict enumerateKeysAndObjectsUsingBlock:^(NSString *title, NSString *message, BOOL *stop) {
-        [elegantSheet addButtonsWithTitle:title block:^{ [self alert:message]; }];
-    }];
+        __weak typeof(self) weakSelf = self;
+        
+        _sheet = [IAElegantSheet elegantSheetWithTitle:@"Elegant Sheet"];
+        [_sheet addButtonsWithTitle:@"Elegant to code" block:^{
+            [weakSelf alert:@"Using blocks handler"];
+        }];
+        [_sheet addButtonsWithTitle:@"Elegant to see" block:^{
+            [weakSelf alert:@"Using custom views"];
+        }];
+        [_sheet addButtonsWithTitle:@"Custom font by default" block:^{
+            [weakSelf alert:@"Using Roboto for default font"];
+        }];
+        [_sheet setDestructiveButtonWithTitle:@"Danger Button" block:^{
+            [weakSelf alert:@"Do something dangerous"];
+        }];
+        [_sheet setCancelButtonWithTitle:@"Thanks!" block:^{
+            NSLog(@"\nCreated by Ikhsan Assaat for 'Back On The Map'. \n#backonthemap #objectivechackathon \nhttps://objectivechackathon.appspot.com/‎");
+        }];
+        
+    }
     
-    [elegantSheet setDestructiveButtonWithTitle:@"Danger Button" block:^{
-        [self alert:@"Do something dangerous"];
-    }];
-    
-    [elegantSheet setCancelButtonWithTitle:@"Thanks!" block:^{
-        NSLog(@"\nCreated by Ikhsan Assaat for 'Back On The Map'. \n#backonthemap #objectivechackathon \nhttps://objectivechackathon.appspot.com/‎");
-    }];
-    
-    [elegantSheet showInView:self.view];
+    return _sheet;
+}
+
+- (void)showElegantSheet:(UIButton *)button {
+    [self.sheet showInView:self.view];
 }
 
 - (void)alert:(NSString *)alertMessage {
