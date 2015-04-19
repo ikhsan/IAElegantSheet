@@ -56,6 +56,19 @@
     XCTAssertEqualObjects(defaultColor, button.backgroundColor, @"Destructive button's background default color should be red");
 }
 
+- (void)testButtonShouldHaveLine {
+    IAElegantButton *button = [IAElegantButton buttonWithTitle:@"title" type:IAElegantButtonTypeDefault baseColor:[UIColor blackColor] block:nil];
+    
+    XCTAssertNotNil(button.lineView, @"Button should have line");
+    XCTAssertTrue([button.subviews containsObject:button.lineView], @"Button should have line as a subview");
+}
+
+- (void)testCancelButtonShouldNotHaveLine {
+    IAElegantButton *button = [IAElegantButton buttonWithTitle:@"title" type:IAElegantButtonTypeCancel baseColor:[UIColor blackColor] block:nil];
+    
+    XCTAssertNil(button.lineView, @"Button should have line");
+}
+
 - (void)testButtonTouchHighlight {
     IAElegantButton *button = [IAElegantButton buttonWithTitle:@"title" type:IAElegantButtonTypeDefault baseColor:[UIColor blackColor] block:nil];
     

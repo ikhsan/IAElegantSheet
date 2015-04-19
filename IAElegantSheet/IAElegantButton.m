@@ -39,7 +39,8 @@ static CGFloat const kAlphaHighlight = 0.75;
     [button addTarget:button action:@selector(buttonHighlight) forControlEvents:UIControlEventTouchDown];
     [button addTarget:button action:@selector(buttonNormal) forControlEvents:UIControlEventTouchUpOutside];
     
-    if (type != IAElegantButtonTypeCancel) [button addBottomBorder];
+    if (type != IAElegantButtonTypeCancel)
+        [button addBottomBorder];
     
     return button;
 }

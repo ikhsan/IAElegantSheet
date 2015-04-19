@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "IAElegantSheet.h"
+
+@interface IAElegantSheet()
+
+@property (weak, nonatomic) UILabel *titleLabel;
+@property (nonatomic, readonly) CGFloat titleHeight;
+@property (nonatomic, readonly) CGFloat buttonHeight;
+@property (nonatomic, readonly) CGFloat transitionDuration;
+
+@property (strong, nonatomic) NSMutableArray *buttons;
+@property (assign, nonatomic, getter=isShowing) BOOL showing;
+
+@end
+
 
 @interface IAElegantSheetTests : XCTestCase
 
@@ -25,16 +39,14 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testInitializers {
+    IAElegantSheet *sheet1 = [[IAElegantSheet alloc] initWithTitle:@"title1"];
+    XCTAssertNotNil(sheet1, @"Should not be nil");
+    XCTAssertEqualObjects(@"TITLE1", sheet1.titleLabel.text, @"Should have correct title");
+    
+    IAElegantSheet *sheet2 = [IAElegantSheet elegantSheetWithTitle:@"title2"];
+    XCTAssertNotNil(sheet2, @"Should not be nil");
+    XCTAssertEqualObjects(@"TITLE2", sheet2.titleLabel.text, @"Should have correct title");
 }
 
 @end
