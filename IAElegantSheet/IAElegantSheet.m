@@ -28,22 +28,20 @@ static const CGFloat kTransitionDuration = 0.2f;
 @implementation IAElegantSheet
 
 + (instancetype)elegantSheetWithTitle:(NSString *)title {
-	return [[IAElegantSheet alloc] initWithTitle:title];
+    return [[IAElegantSheet alloc] initWithTitle:title];
 }
 
 - (id)initWithTitle:(NSString *)title {
-	self = [self initWithFrame:CGRectZero];
-	if (self) {
-        // initialize
-		_baseColor = [UIColor blackColor];
+    self = [self initWithFrame:CGRectZero];
+    if (self) {
+        _baseColor = [UIColor blackColor];
         _buttons = [NSMutableArray array];
-		
+        
         // adding title label
         UILabel *titleLabel = [self generateTitleLabelForTitle:title];
-		[self addSubview:titleLabel];
+        [self addSubview:titleLabel];
         self.titleLabel = titleLabel;
         
-        self.translatesAutoresizingMaskIntoConstraints = NO;
         NSDictionary *views = NSDictionaryOfVariableBindings(titleLabel);
         NSDictionary *metrics = @{ @"height" : @(self.titleHeight) };
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[titleLabel]|" options:0 metrics:nil views:views];
@@ -52,9 +50,9 @@ static const CGFloat kTransitionDuration = 0.2f;
         [self addConstraints:constraints];
         
         [self insertButtonWithTitle:kDefaultCancel type:IAElegantButtonTypeCancel block:nil];
-	}
-	
-	return self;
+    }
+    
+    return self;
 }
 
 - (UILabel *)generateTitleLabelForTitle:(NSString *)title {
@@ -150,26 +148,33 @@ static const CGFloat kTransitionDuration = 0.2f;
 }
 
 - (void)reorderButtons:(NSMutableArray *)buttons {
+    IAElegantButton *destructiveButton = [self destructiveButton];
+    if (destructiveButton) {
+        [buttons removeObjectIdenticalTo:destructiveButton];
+        [buttons addObject:destructiveButton];
+    }
+    
+    IAElegantButton *cancelButton = [self cancelButton];
+    if (cancelButton) {
+        [buttons removeObjectIdenticalTo:cancelButton];
+        [buttons addObject:cancelButton];
+    }
 }
 
 #pragma mark - Preparation before showing view
 
 - (void)prepare:(CGRect)frame {
-    
     self.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(frame), (self.buttons.count * self.buttonHeight + self.titleHeight));
+    
     [self.buttons enumerateObjectsUsingBlock:^(IAElegantButton *button, NSUInteger idx, BOOL *stop) {
         if ([self.subviews containsObject:button]) {
             return;
         }
         
         [self addSubview:button];
-    
-        NSDictionary *views = NSDictionaryOfVariableBindings(button);
-        NSDictionary *metrics = @{
-            @"height": @(self.buttonHeight),
-            @"cursor" : @(idx * self.buttonHeight + self.titleHeight)
-        };
         
+        NSDictionary *views = NSDictionaryOfVariableBindings(button);
+        NSDictionary *metrics = @{ @"height": @(self.buttonHeight), @"cursor" : @(idx * self.buttonHeight + self.titleHeight) };        
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[button]|" options:0 metrics:metrics views:views];
         [self addConstraints:constraints];
         constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-cursor-[button(height)]" options:0 metrics:metrics views:views];
@@ -182,20 +187,20 @@ static const CGFloat kTransitionDuration = 0.2f;
 - (void)showInView:(UIView *)view {
     if (self.isShowing) return;
     
-	[self prepare:view.frame];
-	[view addSubview:self];
+    [self prepare:view.frame];
+    [view addSubview:self];
     
     // adding autolayout code
-    UIView *elegantSheet = self;
+    self.translatesAutoresizingMaskIntoConstraints = NO;
     NSDictionary *metrics = @{ @"height": @(CGRectGetHeight(self.frame)) };
-    NSDictionary *views = NSDictionaryOfVariableBindings(elegantSheet);
+    NSDictionary *views = @{ @"elegantSheet" : self };
     
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[elegantSheet(height)]|" options:0 metrics:metrics views:views];
     [view addConstraints:constraints];
     constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[elegantSheet]|" options:0 metrics:nil views:views];
     [view addConstraints:constraints];
     
-	// slide from bottom
+    // slide from bottom
     self.transform = CGAffineTransformMakeTranslation(0, CGRectGetHeight(self.bounds));
     [UIView animateWithDuration:self.transitionDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.transform = CGAffineTransformMakeTranslation(0, 0);
@@ -205,16 +210,16 @@ static const CGFloat kTransitionDuration = 0.2f;
 }
 
 - (void)dismiss {
-	if (!self.superview) return;
-	
+    if (!self.superview) return;
+    
     __block CGRect f = self.frame;
-	[UIView animateWithDuration:self.transitionDuration animations:^{
+    [UIView animateWithDuration:self.transitionDuration animations:^{
         f.origin.y += f.size.height;
         self.frame = f;
-	} completion:^(BOOL finished) {
-		[self removeFromSuperview];
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
         self.showing = NO;
-	}];
+    }];
 }
 
 @end

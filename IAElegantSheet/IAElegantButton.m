@@ -31,18 +31,18 @@ static CGFloat const kAlpha = 0.75;
     button.titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     button.translatesAutoresizingMaskIntoConstraints = NO;
     button.adjustsImageWhenHighlighted = YES;
-   
     
     [button addTarget:button action:@selector(callBlocks) forControlEvents:UIControlEventTouchUpInside];
     [button addTarget:button action:@selector(buttonHighlight) forControlEvents:UIControlEventTouchDown];
     [button addTarget:button action:@selector(buttonNormal) forControlEvents:UIControlEventTouchUpOutside];
     
+    if (type != IAElegantButtonTypeCancel) [button addBottomBorder];
+    
     return button;
 }
 
 - (void)setButtonTitle:(NSString *)buttonTitle {
-    _buttonTitle = buttonTitle;
-    
+    _buttonTitle = buttonTitle;    
     [self setTitle:[buttonTitle uppercaseString] forState:UIControlStateNormal];
 }
 
@@ -51,6 +51,20 @@ static CGFloat const kAlpha = 0.75;
 }
 
 #pragma mark - Button helpers
+
+- (void)addBottomBorder {
+    UIView *line = [[UIView alloc] init];
+    line.translatesAutoresizingMaskIntoConstraints = NO;
+    [line setBackgroundColor:[UIColor colorWithWhite:.9 alpha:0.5]];
+    [self addSubview:line];
+
+    NSDictionary *views = NSDictionaryOfVariableBindings(line);
+    NSDictionary *metrics = @{ @"padding": @4, @"bottomMargin" : @0.5, @"thickness" : @0.5 };
+    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-padding-[line]-padding-|" options:0 metrics:metrics views:views];
+    [self addConstraints:constraints];
+    constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[line(thickness)]-bottomMargin-|" options:0 metrics:metrics views:views];
+    [self addConstraints:constraints];
+}
 
 - (void)callBlocks {
     [self buttonNormal];
