@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import "UIFont+ElegantSheet.h"
 
 @interface IAElegantSheetFontTests : XCTestCase
 
@@ -15,26 +16,16 @@
 
 @implementation IAElegantSheetFontTests
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+- (void)testElegantFont {
+    UIFont *elegantFont = [UIFont elegantFontWithSize:10];
+    XCTAssertEqual(elegantFont.pointSize, 10, @"Should have the correct font size");
+    XCTAssertEqualObjects(elegantFont.fontName, @"RobotoCondensed-Regular", @"Should have the correct font name");
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testBoldElegantFont {
+    UIFont *elegantFont = [UIFont boldElegantFontWithSize:12];
+    XCTAssertEqual(elegantFont.pointSize, 12, @"Should have the correct font size");
+    XCTAssertEqualObjects(elegantFont.fontName, @"RobotoCondensed-Bold", @"Should have the correct font name");
 }
 
 @end
