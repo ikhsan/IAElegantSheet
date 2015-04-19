@@ -20,6 +20,8 @@
 		46EC1DAC177FFF0900B011FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DA7177FFF0900B011FA /* InfoPlist.strings */; };
 		46EC1DAE177FFF0900B011FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DAA177FFF0900B011FA /* Images.xcassets */; };
 		46EC1DC11780010600B011FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1DC01780010600B011FA /* main.m */; };
+		46F683C41AE3BA8A007A1DF4 /* IAElegantButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F683C31AE3BA8A007A1DF4 /* IAElegantButton.m */; };
+		46F683C71AE3BC69007A1DF4 /* UIFont+ElegantSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F683C61AE3BC69007A1DF4 /* UIFont+ElegantSheet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,10 @@
 		46EC1DA9177FFF0900B011FA /* IAElegantSheet-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IAElegantSheet-Info.plist"; sourceTree = "<group>"; };
 		46EC1DAA177FFF0900B011FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		46EC1DC01780010600B011FA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "../Other Sources/main.m"; sourceTree = "<group>"; };
+		46F683C21AE3BA8A007A1DF4 /* IAElegantButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAElegantButton.h; sourceTree = "<group>"; };
+		46F683C31AE3BA8A007A1DF4 /* IAElegantButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAElegantButton.m; sourceTree = "<group>"; };
+		46F683C51AE3BC69007A1DF4 /* UIFont+ElegantSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+ElegantSheet.h"; sourceTree = "<group>"; };
+		46F683C61AE3BC69007A1DF4 /* UIFont+ElegantSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+ElegantSheet.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,10 @@
 			children = (
 				46EC1D9D177FFEED00B011FA /* IAElegantSheet.h */,
 				46EC1D9E177FFEED00B011FA /* IAElegantSheet.m */,
+				46F683C21AE3BA8A007A1DF4 /* IAElegantButton.h */,
+				46F683C31AE3BA8A007A1DF4 /* IAElegantButton.m */,
+				46F683C51AE3BC69007A1DF4 /* UIFont+ElegantSheet.h */,
+				46F683C61AE3BC69007A1DF4 /* UIFont+ElegantSheet.m */,
 				46BBB53A17992530001C29EB /* Resources */,
 			);
 			name = IAElegantSheet;
@@ -205,6 +215,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46F683C41AE3BA8A007A1DF4 /* IAElegantButton.m in Sources */,
+				46F683C71AE3BC69007A1DF4 /* UIFont+ElegantSheet.m in Sources */,
 				46EC1D9A177FFE9900B011FA /* IAAppDelegate.m in Sources */,
 				46EC1D9F177FFEED00B011FA /* IAElegantSheet.m in Sources */,
 				46EC1DC11780010600B011FA /* main.m in Sources */,

@@ -59,15 +59,15 @@
         [_sheet addButtonsWithTitle:@"Elegant to see" block:^{
             [weakSelf alert:@"Using custom views"];
         }];
-        [_sheet addButtonsWithTitle:@"Custom font by default" block:^{
-            [weakSelf alert:@"Using Roboto for default font"];
-        }];
-        [_sheet setDestructiveButtonWithTitle:@"Danger Button" block:^{
-            [weakSelf alert:@"Do something dangerous"];
-        }];
-        [_sheet setCancelButtonWithTitle:@"Thanks!" block:^{
-            NSLog(@"\nCreated by Ikhsan Assaat for 'Back On The Map'. \n#backonthemap #objectivechackathon \nhttps://objectivechackathon.appspot.com/‎");
-        }];
+//        [_sheet addButtonsWithTitle:@"Custom font by default" block:^{
+//            [weakSelf alert:@"Using Roboto for default font"];
+//        }];
+//        [_sheet setDestructiveButtonWithTitle:@"Danger Button" block:^{
+//            [weakSelf alert:@"Do something dangerous"];
+//        }];
+//        [_sheet setCancelButtonWithTitle:@"Thanks!" block:^{
+//            NSLog(@"\nCreated by Ikhsan Assaat for 'Back On The Map'. \n#backonthemap #objectivechackathon \nhttps://objectivechackathon.appspot.com/‎");
+//        }];
         
     }
     
