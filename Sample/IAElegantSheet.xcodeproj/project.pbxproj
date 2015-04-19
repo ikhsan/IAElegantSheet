@@ -10,6 +10,9 @@
 		46265CC11786B43700D69818 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46265CC01786B43700D69818 /* Default-568h@2x.png */; };
 		46360CEF1AE4467300671D53 /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46360CED1AE4467300671D53 /* RobotoCondensed-Bold.ttf */; };
 		46360CF01AE4467300671D53 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46360CEE1AE4467300671D53 /* RobotoCondensed-Regular.ttf */; };
+		46360CFA1AE447EC00671D53 /* IAElegantSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 46360CF91AE447EC00671D53 /* IAElegantSheetTests.m */; };
+		46360D011AE44A2C00671D53 /* IAElegantButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 46360D001AE44A2C00671D53 /* IAElegantButtonTests.m */; };
+		46360D031AE44A3E00671D53 /* IAElegantSheetFontTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 46360D021AE44A3E00671D53 /* IAElegantSheetFontTests.m */; };
 		46BBB5A017993A06001C29EB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BBB59F17993A06001C29EB /* CoreText.framework */; };
 		46E80C47177FFD3E001E2DFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C46177FFD3E001E2DFF /* Foundation.framework */; };
 		46E80C49177FFD3E001E2DFF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C48177FFD3E001E2DFF /* CoreGraphics.framework */; };
@@ -24,10 +27,25 @@
 		46F683C71AE3BC69007A1DF4 /* UIFont+ElegantSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F683C61AE3BC69007A1DF4 /* UIFont+ElegantSheet.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		46360CFB1AE447EC00671D53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46E80C3B177FFD3E001E2DFF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46E80C42177FFD3E001E2DFF;
+			remoteInfo = IAElegantSheet;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		46265CC01786B43700D69818 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		46360CED1AE4467300671D53 /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
 		46360CEE1AE4467300671D53 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		46360CF51AE447EC00671D53 /* IAElegantSheetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IAElegantSheetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46360CF81AE447EC00671D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46360CF91AE447EC00671D53 /* IAElegantSheetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAElegantSheetTests.m; sourceTree = "<group>"; };
+		46360D001AE44A2C00671D53 /* IAElegantButtonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAElegantButtonTests.m; sourceTree = "<group>"; };
+		46360D021AE44A3E00671D53 /* IAElegantSheetFontTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAElegantSheetFontTests.m; sourceTree = "<group>"; };
 		46BBB59F17993A06001C29EB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		46E80C43177FFD3E001E2DFF /* Elegant Sheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elegant Sheet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E80C46177FFD3E001E2DFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,6 +68,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		46360CF21AE447EC00671D53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46E80C40177FFD3E001E2DFF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,12 +99,32 @@
 			path = ../Resources;
 			sourceTree = "<group>";
 		};
+		46360CF61AE447EC00671D53 /* IAElegantSheetTests */ = {
+			isa = PBXGroup;
+			children = (
+				46360CF91AE447EC00671D53 /* IAElegantSheetTests.m */,
+				46360D001AE44A2C00671D53 /* IAElegantButtonTests.m */,
+				46360D021AE44A3E00671D53 /* IAElegantSheetFontTests.m */,
+				46360CF71AE447EC00671D53 /* Supporting Files */,
+			);
+			path = IAElegantSheetTests;
+			sourceTree = "<group>";
+		};
+		46360CF71AE447EC00671D53 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				46360CF81AE447EC00671D53 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		46E80C3A177FFD3E001E2DFF = {
 			isa = PBXGroup;
 			children = (
 				46EC1D95177FFE9900B011FA /* Classes */,
 				46EC1D9C177FFEED00B011FA /* IAElegantSheet */,
 				46EC1DA4177FFF0900B011FA /* Resources */,
+				46360CF61AE447EC00671D53 /* IAElegantSheetTests */,
 				46E80C45177FFD3E001E2DFF /* Frameworks */,
 				46E80C44177FFD3E001E2DFF /* Products */,
 			);
@@ -89,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				46E80C43177FFD3E001E2DFF /* Elegant Sheet.app */,
+				46360CF51AE447EC00671D53 /* IAElegantSheetTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -145,6 +191,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		46360CF41AE447EC00671D53 /* IAElegantSheetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46360CFD1AE447EC00671D53 /* Build configuration list for PBXNativeTarget "IAElegantSheetTests" */;
+			buildPhases = (
+				46360CF11AE447EC00671D53 /* Sources */,
+				46360CF21AE447EC00671D53 /* Frameworks */,
+				46360CF31AE447EC00671D53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46360CFC1AE447EC00671D53 /* PBXTargetDependency */,
+			);
+			name = IAElegantSheetTests;
+			productName = IAElegantSheetTests;
+			productReference = 46360CF51AE447EC00671D53 /* IAElegantSheetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		46E80C42177FFD3E001E2DFF /* IAElegantSheet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46E80C75177FFD3F001E2DFF /* Build configuration list for PBXNativeTarget "IAElegantSheet" */;
@@ -172,6 +236,10 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = 3kunci;
 				TargetAttributes = {
+					46360CF41AE447EC00671D53 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 46E80C42177FFD3E001E2DFF;
+					};
 					46E80C42177FFD3E001E2DFF = {
 						DevelopmentTeam = 5M3FWG697N;
 					};
@@ -191,11 +259,19 @@
 			projectRoot = "";
 			targets = (
 				46E80C42177FFD3E001E2DFF /* IAElegantSheet */,
+				46360CF41AE447EC00671D53 /* IAElegantSheetTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		46360CF31AE447EC00671D53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46E80C41177FFD3E001E2DFF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -211,6 +287,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		46360CF11AE447EC00671D53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46360D011AE44A2C00671D53 /* IAElegantButtonTests.m in Sources */,
+				46360CFA1AE447EC00671D53 /* IAElegantSheetTests.m in Sources */,
+				46360D031AE44A3E00671D53 /* IAElegantSheetFontTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46E80C3F177FFD3E001E2DFF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,6 +312,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		46360CFC1AE447EC00671D53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 46E80C42177FFD3E001E2DFF /* IAElegantSheet */;
+			targetProxy = 46360CFB1AE447EC00671D53 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		46EC1DA7177FFF0900B011FA /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -238,6 +332,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		46360CFE1AE447EC00671D53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = IAElegantSheetTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elegant Sheet.app/Elegant Sheet";
+			};
+			name = Debug;
+		};
+		46360CFF1AE447EC00671D53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = IAElegantSheetTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elegant Sheet.app/Elegant Sheet";
+			};
+			name = Release;
+		};
 		46E80C73177FFD3F001E2DFF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -339,6 +479,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		46360CFD1AE447EC00671D53 /* Build configuration list for PBXNativeTarget "IAElegantSheetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46360CFE1AE447EC00671D53 /* Debug */,
+				46360CFF1AE447EC00671D53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		46E80C3E177FFD3E001E2DFF /* Build configuration list for PBXProject "IAElegantSheet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

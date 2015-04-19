@@ -1,6 +1,5 @@
 //
-//  IACustomSheet.m
-//  Penny
+//  IAElegantSheet
 //
 //  Created by Ikhsan Assaat on 5/10/13.
 //  Copyright (c) 2013 Homegrown Laboratories. All rights reserved.
