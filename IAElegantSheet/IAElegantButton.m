@@ -9,11 +9,13 @@
 #import "IAElegantButton.h"
 #import "UIFont+ElegantSheet.h"
 
-static CGFloat const kAlpha = 0.75;
+static CGFloat const kAlphaHighlight = 0.75;
 
 @interface IAElegantButton ()
 
 @property (assign, nonatomic) IAElegantButtonType elegantButtonType;
+@property (weak, nonatomic) UIView *lineView;
+@property (nonatomic, readonly) CGFloat alphaHighlight;
 
 @end
 
@@ -25,8 +27,9 @@ static CGFloat const kAlpha = 0.75;
     button.elegantButtonType = type;
     button.buttonAction = [block copy];
     
+    baseColor = baseColor ?: [UIColor blackColor];
     UIColor *buttonColor = (type != IAElegantButtonTypeDestructive)? baseColor : [UIColor redColor];
-    button.backgroundColor = [buttonColor colorWithAlphaComponent:kAlpha];
+    button.backgroundColor = [buttonColor colorWithAlphaComponent:button.alphaHighlight];
     button.titleLabel.font = [UIFont elegantFontWithSize:16.0];
     button.titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     button.translatesAutoresizingMaskIntoConstraints = NO;
@@ -57,6 +60,7 @@ static CGFloat const kAlpha = 0.75;
     line.translatesAutoresizingMaskIntoConstraints = NO;
     [line setBackgroundColor:[UIColor colorWithWhite:.9 alpha:0.5]];
     [self addSubview:line];
+    self.lineView = line;
 
     NSDictionary *views = NSDictionaryOfVariableBindings(line);
     NSDictionary *metrics = @{ @"padding": @4, @"bottomMargin" : @0.5, @"thickness" : @0.5 };
@@ -66,17 +70,21 @@ static CGFloat const kAlpha = 0.75;
     [self addConstraints:constraints];
 }
 
+- (CGFloat)alphaHighlight {
+    return kAlphaHighlight;
+}
+
 - (void)callBlocks {
     [self buttonNormal];
     if (self.buttonAction) self.buttonAction();
 }
 
 - (void)buttonHighlight {
-    [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:kAlpha+0.05]];
+    [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:self.alphaHighlight+0.05]];
 }
 
 - (void)buttonNormal {
-    [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:kAlpha]];
+    [self setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:self.alphaHighlight]];
 }
 
 @end
