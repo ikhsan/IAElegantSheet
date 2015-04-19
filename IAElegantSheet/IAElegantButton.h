@@ -20,6 +20,6 @@ typedef NS_ENUM(NSUInteger, IAElegantButtonType) {
 @property (strong, nonatomic) void (^buttonAction)(void);
 @property (nonatomic, readonly) IAElegantButtonType elegantButtonType;
 
-+ (instancetype)buttonWithTitle:(NSString *)title type:(IAElegantButtonType)type baseColor:(UIColor *)baseColor action:(void (^)(void))action;
++ (instancetype)buttonWithTitle:(NSString *)title type:(IAElegantButtonType)type baseColor:(UIColor *)baseColor block:(void (^)(void))block;
 
 @end

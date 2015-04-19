@@ -19,23 +19,23 @@ static CGFloat const kAlpha = 0.75;
 
 @implementation IAElegantButton
 
-+ (instancetype)buttonWithTitle:(NSString *)title type:(IAElegantButtonType)type baseColor:(UIColor *)baseColor action:(void (^)(void))action {
++ (instancetype)buttonWithTitle:(NSString *)title type:(IAElegantButtonType)type baseColor:(UIColor *)baseColor block:(void (^)(void))block {
     IAElegantButton *button = [super buttonWithType:UIButtonTypeCustom];
     button.buttonTitle = title ?: @"";
     button.elegantButtonType = type;
-    button.buttonAction = [action copy] ?: [^{} copy];
+    button.buttonAction = [block copy];
     
     UIColor *buttonColor = (type != IAElegantButtonTypeDestructive)? baseColor : [UIColor redColor];
     button.backgroundColor = [buttonColor colorWithAlphaComponent:kAlpha];
-    button.titleLabel.font = [UIFont elegantFontWithSize:14.0];
+    button.titleLabel.font = [UIFont elegantFontWithSize:16.0];
     button.titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     button.translatesAutoresizingMaskIntoConstraints = NO;
     button.adjustsImageWhenHighlighted = YES;
    
     
-    [button addTarget:self action:@selector(callBlocks) forControlEvents:UIControlEventTouchUpInside];
-    [button addTarget:self action:@selector(buttonHighlight) forControlEvents:UIControlEventTouchDown];
-    [button addTarget:self action:@selector(buttonNormal) forControlEvents:UIControlEventTouchUpOutside];
+    [button addTarget:button action:@selector(callBlocks) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:button action:@selector(buttonHighlight) forControlEvents:UIControlEventTouchDown];
+    [button addTarget:button action:@selector(buttonNormal) forControlEvents:UIControlEventTouchUpOutside];
     
     return button;
 }
