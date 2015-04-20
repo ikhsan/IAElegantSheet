@@ -1,7 +1,7 @@
-# IAElegantSheet
-
+# IAElegantSheet 
 [![Build Status](https://travis-ci.org/ixnixnixn/IAElegantSheet.svg?branch=master)](https://travis-ci.org/ixnixnixn/IAElegantSheet)
-[![Coverage Status](https://coveralls.io/repos/ixnixnixn/IAElegantSheet/badge.svg?branch=master)](https://coveralls.io/r/ixnixnixn/IAElegantSheet?branch=development)
+[![Cocoapods](https://cocoapod-badges.herokuapp.com/v/IAElegantSheet/badge.png)](http://cocoapods.org/?q=iaelegantsheet)
+[![Coverage Status](https://coveralls.io/repos/ixnixnixn/IAElegantSheet/badge.svg?branch=master)](https://coveralls.io/r/ixnixnixn/IAElegantSheet?branch=master)
 
 Another UIActionSheet but more elegant. Elegant to code and elegant to see. Using Roboto Condensed as default font.
 
@@ -11,15 +11,13 @@ Yes! :) We can't just get enough of block based handler are we.
 
 I've built it for my latest/current project, and I built it also to learn on how to built action sheet using block handlers. It also uses Roboto Condensed as the default font. Also, support adapting portrait and landscape orientation thorugh auto layout.
 
-Currently still WIP, but already usable though.
-
 ## Preview
-![image](https://dl.dropboxusercontent.com/u/10627916/elegantsheet-portrait.png)
-![image](https://dl.dropboxusercontent.com/u/10627916/elegantsheet-landscape.png)
+![preview_portrait](Screenshots/portrait.png)
+![preview_landscape](Screenshots/landscape.png)
 
 ## Requirements
 
-- iOS 6.0
+iOS 7.0 and above
 
 
 ## Usage
@@ -52,14 +50,11 @@ IAElegantSheet *elegantSheet = [IAElegantSheet elegantSheetWithTitle:@"Elegant S
 [elegantSheet showInView:self.view];
 ````
 
-##Todo
+## [License](LICENSE)
 
-- Bundle custom fonts
-- Submit to cocoapod
+Copyright (c) 2013-2015 Ikhsan Assaat. 
 
-## License
-
-IAElegantSheet is provided under the MIT license.  See LICENSE.
+IAElegantSheet is provided under the MIT license.
 
 ## Attribution
 
