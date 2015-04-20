@@ -1,10 +1,13 @@
 # IAElegantSheet
 
-Another UIActionSheet but more elegant. Elegant to code and elegant to see. Using Roboto Condensed as default font. 
+[![Build Status](https://travis-ci.org/ixnixnixn/IAElegantSheet.svg?branch=master)](https://travis-ci.org/ixnixnixn/IAElegantSheet)
+[![Coverage Status](https://coveralls.io/repos/ixnixnixn/IAElegantSheet/badge.svg?branch=master)](https://coveralls.io/r/ixnixnixn/IAElegantSheet?branch=development)
+
+Another UIActionSheet but more elegant. Elegant to code and elegant to see. Using Roboto Condensed as default font.
 
 ## Urgh, another block based UIActionSheet?
 
-Yes! :) We can't just get enough of block based handler are we. 
+Yes! :) We can't just get enough of block based handler are we.
 
 I've built it for my latest/current project, and I built it also to learn on how to built action sheet using block handlers. It also uses Roboto Condensed as the default font. Also, support adapting portrait and landscape orientation thorugh auto layout.
 
@@ -29,8 +32,8 @@ Import the header, create sheet, add buttons, add handler and show it :
 IAElegantSheet *elegantSheet = [IAElegantSheet elegantSheetWithTitle:@"Elegant Sheet"];
 
 // add buttons with its own block
-[elegantSheet addButtonsWithTitle:@"Elegant to code" block:^{ 
-	code.isElegant = YES; 
+[elegantSheet addButtonsWithTitle:@"Elegant to code" block:^{
+	code.isElegant = YES;
 }];
 [elegantSheet addButtonsWithTitle:@"Elegant to see" block:^{
 	sheet.isElegant = YES;

@@ -8,28 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		46265CC11786B43700D69818 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 46265CC01786B43700D69818 /* Default-568h@2x.png */; };
-		46BBB53E17992530001C29EB /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46BBB53B17992530001C29EB /* RobotoCondensed-Bold.ttf */; };
-		46BBB54017992530001C29EB /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46BBB53D17992530001C29EB /* RobotoCondensed-Regular.ttf */; };
+		46360CEF1AE4467300671D53 /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46360CED1AE4467300671D53 /* RobotoCondensed-Bold.ttf */; };
+		46360CF01AE4467300671D53 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46360CEE1AE4467300671D53 /* RobotoCondensed-Regular.ttf */; };
+		46360CFA1AE447EC00671D53 /* IAElegantSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 46360CF91AE447EC00671D53 /* IAElegantSheetTests.m */; };
+		46360D011AE44A2C00671D53 /* IAElegantButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 46360D001AE44A2C00671D53 /* IAElegantButtonTests.m */; };
+		46360D031AE44A3E00671D53 /* IAElegantSheetFontTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 46360D021AE44A3E00671D53 /* IAElegantSheetFontTests.m */; };
 		46BBB5A017993A06001C29EB /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BBB59F17993A06001C29EB /* CoreText.framework */; };
 		46E80C47177FFD3E001E2DFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C46177FFD3E001E2DFF /* Foundation.framework */; };
 		46E80C49177FFD3E001E2DFF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C48177FFD3E001E2DFF /* CoreGraphics.framework */; };
 		46E80C4B177FFD3E001E2DFF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C4A177FFD3E001E2DFF /* UIKit.framework */; };
-		46E80C66177FFD3E001E2DFF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C65177FFD3E001E2DFF /* XCTest.framework */; };
-		46E80C67177FFD3E001E2DFF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C46177FFD3E001E2DFF /* Foundation.framework */; };
-		46E80C68177FFD3E001E2DFF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E80C4A177FFD3E001E2DFF /* UIKit.framework */; };
 		46EC1D9A177FFE9900B011FA /* IAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1D97177FFE9900B011FA /* IAAppDelegate.m */; };
 		46EC1D9B177FFE9900B011FA /* IAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1D99177FFE9900B011FA /* IAViewController.m */; };
 		46EC1D9F177FFEED00B011FA /* IAElegantSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1D9E177FFEED00B011FA /* IAElegantSheet.m */; };
 		46EC1DAC177FFF0900B011FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DA7177FFF0900B011FA /* InfoPlist.strings */; };
 		46EC1DAE177FFF0900B011FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DAA177FFF0900B011FA /* Images.xcassets */; };
-		46EC1DB4177FFF1900B011FA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DB0177FFF1900B011FA /* InfoPlist.strings */; };
-		46EC1DB5177FFF1900B011FA /* IAElegantSheetTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46EC1DB2177FFF1900B011FA /* IAElegantSheetTests-Info.plist */; };
-		46EC1DB6177FFF1900B011FA /* IAElegantSheetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1DB3177FFF1900B011FA /* IAElegantSheetTests.m */; };
 		46EC1DC11780010600B011FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 46EC1DC01780010600B011FA /* main.m */; };
+		46F683C41AE3BA8A007A1DF4 /* IAElegantButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F683C31AE3BA8A007A1DF4 /* IAElegantButton.m */; };
+		46F683C71AE3BC69007A1DF4 /* UIFont+ElegantSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 46F683C61AE3BC69007A1DF4 /* UIFont+ElegantSheet.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		46E80C69177FFD3E001E2DFF /* PBXContainerItemProxy */ = {
+		46360CFB1AE447EC00671D53 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 46E80C3B177FFD3E001E2DFF /* Project object */;
 			proxyType = 1;
@@ -40,15 +39,18 @@
 
 /* Begin PBXFileReference section */
 		46265CC01786B43700D69818 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
-		46BBB53B17992530001C29EB /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
-		46BBB53D17992530001C29EB /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		46360CED1AE4467300671D53 /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
+		46360CEE1AE4467300671D53 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		46360CF51AE447EC00671D53 /* IAElegantSheetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IAElegantSheetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46360CF81AE447EC00671D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46360CF91AE447EC00671D53 /* IAElegantSheetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IAElegantSheetTests.m; sourceTree = "<group>"; };
+		46360D001AE44A2C00671D53 /* IAElegantButtonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAElegantButtonTests.m; sourceTree = "<group>"; };
+		46360D021AE44A3E00671D53 /* IAElegantSheetFontTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAElegantSheetFontTests.m; sourceTree = "<group>"; };
 		46BBB59F17993A06001C29EB /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		46E80C43177FFD3E001E2DFF /* Elegant Sheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Elegant Sheet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E80C46177FFD3E001E2DFF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		46E80C48177FFD3E001E2DFF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		46E80C4A177FFD3E001E2DFF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		46E80C64177FFD3E001E2DFF /* IAElegantSheetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IAElegantSheetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		46E80C65177FFD3E001E2DFF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		46EC1D96177FFE9900B011FA /* IAAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAAppDelegate.h; sourceTree = "<group>"; };
 		46EC1D97177FFE9900B011FA /* IAAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAAppDelegate.m; sourceTree = "<group>"; };
 		46EC1D98177FFE9900B011FA /* IAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAViewController.h; sourceTree = "<group>"; };
@@ -58,14 +60,21 @@
 		46EC1DA8177FFF0900B011FA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		46EC1DA9177FFF0900B011FA /* IAElegantSheet-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IAElegantSheet-Info.plist"; sourceTree = "<group>"; };
 		46EC1DAA177FFF0900B011FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		46EC1DB1177FFF1900B011FA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		46EC1DB2177FFF1900B011FA /* IAElegantSheetTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IAElegantSheetTests-Info.plist"; sourceTree = "<group>"; };
-		46EC1DB3177FFF1900B011FA /* IAElegantSheetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAElegantSheetTests.m; sourceTree = "<group>"; };
-		46EC1DBF1780010600B011FA /* IAElegantSheet-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IAElegantSheet-Prefix.pch"; sourceTree = "<group>"; };
-		46EC1DC01780010600B011FA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		46EC1DC01780010600B011FA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "../Other Sources/main.m"; sourceTree = "<group>"; };
+		46F683C21AE3BA8A007A1DF4 /* IAElegantButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAElegantButton.h; sourceTree = "<group>"; };
+		46F683C31AE3BA8A007A1DF4 /* IAElegantButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAElegantButton.m; sourceTree = "<group>"; };
+		46F683C51AE3BC69007A1DF4 /* UIFont+ElegantSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+ElegantSheet.h"; sourceTree = "<group>"; };
+		46F683C61AE3BC69007A1DF4 /* UIFont+ElegantSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+ElegantSheet.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		46360CF21AE447EC00671D53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46E80C40177FFD3E001E2DFF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -77,27 +86,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		46E80C61177FFD3E001E2DFF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				46E80C66177FFD3E001E2DFF /* XCTest.framework in Frameworks */,
-				46E80C68177FFD3E001E2DFF /* UIKit.framework in Frameworks */,
-				46E80C67177FFD3E001E2DFF /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		46BBB53A17992530001C29EB /* Resources */ = {
+		46360CEC1AE4467300671D53 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				46BBB53B17992530001C29EB /* RobotoCondensed-Bold.ttf */,
-				46BBB53D17992530001C29EB /* RobotoCondensed-Regular.ttf */,
+				46360CED1AE4467300671D53 /* RobotoCondensed-Bold.ttf */,
+				46360CEE1AE4467300671D53 /* RobotoCondensed-Regular.ttf */,
 			);
 			name = Resources;
-			path = ../Sample/Resources/Resources;
+			path = ../Resources;
+			sourceTree = "<group>";
+		};
+		46360CF61AE447EC00671D53 /* IAElegantSheetTests */ = {
+			isa = PBXGroup;
+			children = (
+				46360CF91AE447EC00671D53 /* IAElegantSheetTests.m */,
+				46360D001AE44A2C00671D53 /* IAElegantButtonTests.m */,
+				46360D021AE44A3E00671D53 /* IAElegantSheetFontTests.m */,
+				46360CF71AE447EC00671D53 /* Supporting Files */,
+			);
+			path = IAElegantSheetTests;
+			sourceTree = "<group>";
+		};
+		46360CF71AE447EC00671D53 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				46360CF81AE447EC00671D53 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		46E80C3A177FFD3E001E2DFF = {
@@ -105,9 +123,8 @@
 			children = (
 				46EC1D95177FFE9900B011FA /* Classes */,
 				46EC1D9C177FFEED00B011FA /* IAElegantSheet */,
-				46EC1DBE1780010600B011FA /* Other Sources */,
 				46EC1DA4177FFF0900B011FA /* Resources */,
-				46EC1DAF177FFF1900B011FA /* Tests */,
+				46360CF61AE447EC00671D53 /* IAElegantSheetTests */,
 				46E80C45177FFD3E001E2DFF /* Frameworks */,
 				46E80C44177FFD3E001E2DFF /* Products */,
 			);
@@ -117,7 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				46E80C43177FFD3E001E2DFF /* Elegant Sheet.app */,
-				46E80C64177FFD3E001E2DFF /* IAElegantSheetTests.xctest */,
+				46360CF51AE447EC00671D53 /* IAElegantSheetTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,7 +146,6 @@
 				46E80C46177FFD3E001E2DFF /* Foundation.framework */,
 				46E80C48177FFD3E001E2DFF /* CoreGraphics.framework */,
 				46E80C4A177FFD3E001E2DFF /* UIKit.framework */,
-				46E80C65177FFD3E001E2DFF /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -150,7 +166,11 @@
 			children = (
 				46EC1D9D177FFEED00B011FA /* IAElegantSheet.h */,
 				46EC1D9E177FFEED00B011FA /* IAElegantSheet.m */,
-				46BBB53A17992530001C29EB /* Resources */,
+				46F683C21AE3BA8A007A1DF4 /* IAElegantButton.h */,
+				46F683C31AE3BA8A007A1DF4 /* IAElegantButton.m */,
+				46F683C51AE3BC69007A1DF4 /* UIFont+ElegantSheet.h */,
+				46F683C61AE3BC69007A1DF4 /* UIFont+ElegantSheet.m */,
+				46360CEC1AE4467300671D53 /* Resources */,
 			);
 			name = IAElegantSheet;
 			path = ../IAElegantSheet;
@@ -159,6 +179,7 @@
 		46EC1DA4177FFF0900B011FA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				46EC1DC01780010600B011FA /* main.m */,
 				46265CC01786B43700D69818 /* Default-568h@2x.png */,
 				46EC1DA7177FFF0900B011FA /* InfoPlist.strings */,
 				46EC1DA9177FFF0900B011FA /* IAElegantSheet-Info.plist */,
@@ -167,29 +188,27 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		46EC1DAF177FFF1900B011FA /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				46EC1DB0177FFF1900B011FA /* InfoPlist.strings */,
-				46EC1DB2177FFF1900B011FA /* IAElegantSheetTests-Info.plist */,
-				46EC1DB3177FFF1900B011FA /* IAElegantSheetTests.m */,
-			);
-			name = Tests;
-			path = ../Tests;
-			sourceTree = "<group>";
-		};
-		46EC1DBE1780010600B011FA /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				46EC1DBF1780010600B011FA /* IAElegantSheet-Prefix.pch */,
-				46EC1DC01780010600B011FA /* main.m */,
-			);
-			path = "Other Sources";
-			sourceTree = SOURCE_ROOT;
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		46360CF41AE447EC00671D53 /* IAElegantSheetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46360CFD1AE447EC00671D53 /* Build configuration list for PBXNativeTarget "IAElegantSheetTests" */;
+			buildPhases = (
+				46360CF11AE447EC00671D53 /* Sources */,
+				46360CF21AE447EC00671D53 /* Frameworks */,
+				46360CF31AE447EC00671D53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46360CFC1AE447EC00671D53 /* PBXTargetDependency */,
+			);
+			name = IAElegantSheetTests;
+			productName = IAElegantSheetTests;
+			productReference = 46360CF51AE447EC00671D53 /* IAElegantSheetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		46E80C42177FFD3E001E2DFF /* IAElegantSheet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46E80C75177FFD3F001E2DFF /* Build configuration list for PBXNativeTarget "IAElegantSheet" */;
@@ -207,24 +226,6 @@
 			productReference = 46E80C43177FFD3E001E2DFF /* Elegant Sheet.app */;
 			productType = "com.apple.product-type.application";
 		};
-		46E80C63177FFD3E001E2DFF /* IAElegantSheetTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 46E80C78177FFD3F001E2DFF /* Build configuration list for PBXNativeTarget "IAElegantSheetTests" */;
-			buildPhases = (
-				46E80C60177FFD3E001E2DFF /* Sources */,
-				46E80C61177FFD3E001E2DFF /* Frameworks */,
-				46E80C62177FFD3E001E2DFF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				46E80C6A177FFD3E001E2DFF /* PBXTargetDependency */,
-			);
-			name = IAElegantSheetTests;
-			productName = IAElegantSheetTests;
-			productReference = 46E80C64177FFD3E001E2DFF /* IAElegantSheetTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -235,11 +236,12 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = 3kunci;
 				TargetAttributes = {
+					46360CF41AE447EC00671D53 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 46E80C42177FFD3E001E2DFF;
+					};
 					46E80C42177FFD3E001E2DFF = {
 						DevelopmentTeam = 5M3FWG697N;
-					};
-					46E80C63177FFD3E001E2DFF = {
-						TestTargetID = 46E80C42177FFD3E001E2DFF;
 					};
 				};
 			};
@@ -257,40 +259,50 @@
 			projectRoot = "";
 			targets = (
 				46E80C42177FFD3E001E2DFF /* IAElegantSheet */,
-				46E80C63177FFD3E001E2DFF /* IAElegantSheetTests */,
+				46360CF41AE447EC00671D53 /* IAElegantSheetTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		46360CF31AE447EC00671D53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46E80C41177FFD3E001E2DFF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				46EC1DAE177FFF0900B011FA /* Images.xcassets in Resources */,
 				46EC1DAC177FFF0900B011FA /* InfoPlist.strings in Resources */,
+				46360CEF1AE4467300671D53 /* RobotoCondensed-Bold.ttf in Resources */,
+				46360CF01AE4467300671D53 /* RobotoCondensed-Regular.ttf in Resources */,
 				46265CC11786B43700D69818 /* Default-568h@2x.png in Resources */,
-				46BBB53E17992530001C29EB /* RobotoCondensed-Bold.ttf in Resources */,
-				46BBB54017992530001C29EB /* RobotoCondensed-Regular.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		46E80C62177FFD3E001E2DFF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				46EC1DB5177FFF1900B011FA /* IAElegantSheetTests-Info.plist in Resources */,
-				46EC1DB4177FFF1900B011FA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		46360CF11AE447EC00671D53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46360D011AE44A2C00671D53 /* IAElegantButtonTests.m in Sources */,
+				46360CFA1AE447EC00671D53 /* IAElegantSheetTests.m in Sources */,
+				46360D031AE44A3E00671D53 /* IAElegantSheetFontTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		46E80C3F177FFD3E001E2DFF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46F683C41AE3BA8A007A1DF4 /* IAElegantButton.m in Sources */,
+				46F683C71AE3BC69007A1DF4 /* UIFont+ElegantSheet.m in Sources */,
 				46EC1D9A177FFE9900B011FA /* IAAppDelegate.m in Sources */,
 				46EC1D9F177FFEED00B011FA /* IAElegantSheet.m in Sources */,
 				46EC1DC11780010600B011FA /* main.m in Sources */,
@@ -298,21 +310,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		46E80C60177FFD3E001E2DFF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				46EC1DB6177FFF1900B011FA /* IAElegantSheetTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		46E80C6A177FFD3E001E2DFF /* PBXTargetDependency */ = {
+		46360CFC1AE447EC00671D53 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 46E80C42177FFD3E001E2DFF /* IAElegantSheet */;
-			targetProxy = 46E80C69177FFD3E001E2DFF /* PBXContainerItemProxy */;
+			targetProxy = 46360CFB1AE447EC00671D53 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -325,17 +329,55 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		46EC1DB0177FFF1900B011FA /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				46EC1DB1177FFF1900B011FA /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		46360CFE1AE447EC00671D53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = IAElegantSheetTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elegant Sheet.app/Elegant Sheet";
+			};
+			name = Debug;
+		};
+		46360CFF1AE447EC00671D53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = IAElegantSheetTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Elegant Sheet.app/Elegant Sheet";
+			};
+			name = Release;
+		};
 		46E80C73177FFD3F001E2DFF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -356,6 +398,8 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -393,6 +437,8 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -409,11 +455,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: M Ikhsan Assaat (KPNPSBY75D)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/IAElegantSheet-Prefix.pch";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/IAElegantSheet-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Elegant Sheet";
 				WRAPPER_EXTENSION = app;
 			};
@@ -424,59 +470,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: M Ikhsan Assaat (KPNPSBY75D)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/IAElegantSheet-Prefix.pch";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/IAElegantSheet-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Elegant Sheet";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		46E80C79177FFD3F001E2DFF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IAElegantSheet.app/IAElegantSheet";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/IAElegantSheet-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "IAElegantSheetTests/IAElegantSheetTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		46E80C7A177FFD3F001E2DFF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IAElegantSheet.app/IAElegantSheet";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(SYSTEM_APPS_DIR)/Xcode5-DP.app/Contents/Developer/Library/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SRCROOT)/Other Sources/IAElegantSheet-Prefix.pch";
-				INFOPLIST_FILE = "IAElegantSheetTests/IAElegantSheetTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		46360CFD1AE447EC00671D53 /* Build configuration list for PBXNativeTarget "IAElegantSheetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46360CFE1AE447EC00671D53 /* Debug */,
+				46360CFF1AE447EC00671D53 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		46E80C3E177FFD3E001E2DFF /* Build configuration list for PBXProject "IAElegantSheet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -491,15 +506,6 @@
 			buildConfigurations = (
 				46E80C76177FFD3F001E2DFF /* Debug */,
 				46E80C77177FFD3F001E2DFF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		46E80C78177FFD3F001E2DFF /* Build configuration list for PBXNativeTarget "IAElegantSheetTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				46E80C79177FFD3F001E2DFF /* Debug */,
-				46E80C7A177FFD3F001E2DFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

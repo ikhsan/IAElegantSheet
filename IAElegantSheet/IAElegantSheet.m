@@ -1,273 +1,224 @@
 //
-//  IACustomSheet.m
-//  Penny
+//  IAElegantSheet
 //
 //  Created by Ikhsan Assaat on 5/10/13.
 //  Copyright (c) 2013 Homegrown Laboratories. All rights reserved.
 //
 
 #import "IAElegantSheet.h"
-#import <CoreText/CoreText.h>
+#import "UIFont+ElegantSheet.h"
+#import "IAElegantButton.h"
 
-NSString *const ButtonTitleKey = @"ButtonTitle";
-NSString *const ButtonBlockKey = @"ButtonBlock";
-NSString *const DefaultCancel = @"Cancel";
-
-int const TitleTag = 9999;
-CGFloat const TransitionDuration = .2;
-CGFloat const Alpha = 0.75;
-
-@interface UIFont (ElegantFont)
-
-+ (UIFont *)elegantFontWithSize:(CGFloat)size;
-+ (UIFont *)boldElegantFontWithSize:(CGFloat)size;
-
-@end
-
-@implementation UIFont (ElegantFont)
-
-+ (UIFont *)elegantFontWithSize:(CGFloat)size {
-    static NSString *fontName = @"RobotoCondensed-Regular";
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSURL * url = [[NSBundle mainBundle] URLForResource:fontName withExtension:@"ttf"];
-		CFErrorRef error;
-        CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error);
-        error = nil;
-    });
-    
-    return [UIFont fontWithName:fontName size:size];
-}
-
-+ (UIFont *)boldElegantFontWithSize:(CGFloat)size {
-    static NSString *fontName = @"RobotoCondensed-Bold";
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NSURL * url = [[NSBundle mainBundle] URLForResource:fontName withExtension:@"ttf"];
-		CFErrorRef error;
-        CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error);
-        error = nil;
-    });
-    
-    return [UIFont fontWithName:fontName size:size];
-}
-
-@end
+static NSString *const kDefaultCancel = @"Cancel";
+static const CGFloat kTransitionDuration = 0.2f;
 
 @interface IAElegantSheet()
 
-@property (strong, nonatomic) NSMutableArray *buttonTitles;
-@property (strong, nonatomic) NSMutableDictionary *blocks;
-@property (assign, nonatomic) NSInteger destructiveIndex;
+@property (weak, nonatomic) UILabel *titleLabel;
+@property (nonatomic, readonly) CGFloat titleHeight;
+@property (nonatomic, readonly) CGFloat buttonHeight;
+@property (nonatomic, readonly) CGFloat transitionDuration;
+
+@property (strong, nonatomic) NSMutableArray *buttons;
+@property (assign, nonatomic, getter=isShowing) BOOL showing;
 
 @end
 
 @implementation IAElegantSheet
 
 + (instancetype)elegantSheetWithTitle:(NSString *)title {
-	return [[IAElegantSheet alloc] initWithTitle:title];
+    return [[IAElegantSheet alloc] initWithTitle:title];
 }
 
 - (id)initWithTitle:(NSString *)title {
-	self = [self initWithFrame:CGRectZero];
-	if (self) {
-		// adding cancel name and block
-		_buttonTitles = [NSMutableArray arrayWithObject:DefaultCancel];
-		void (^cancel)(void) = ^{};
-		_blocks = [NSMutableDictionary dictionaryWithObject:[cancel copy] forKey:DefaultCancel];
-		
-		// adding title label
-		_baseColor = [UIColor blackColor];
-		
-		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-		titleLabel.text = [title uppercaseString];
-		titleLabel.tag = TitleTag;
-		titleLabel.textAlignment = NSTextAlignmentCenter;
-		titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
-		titleLabel.shadowColor = [UIColor blackColor];
-		titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
-        titleLabel.font = [UIFont boldElegantFontWithSize:titleLabel.font.pointSize];
-        titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-		[self addSubview:titleLabel];
+    self = [self initWithFrame:CGRectZero];
+    if (self) {
+        _baseColor = [UIColor blackColor];
+        _buttons = [NSMutableArray array];
         
-        // autolayout code
+        // adding title label
+        UILabel *titleLabel = [self generateTitleLabelForTitle:title];
+        [self addSubview:titleLabel];
+        self.titleLabel = titleLabel;
+        
         NSDictionary *views = NSDictionaryOfVariableBindings(titleLabel);
+        NSDictionary *metrics = @{ @"height" : @(self.titleHeight) };
         NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[titleLabel]|" options:0 metrics:nil views:views];
         [self addConstraints:constraints];
-        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[titleLabel(38)]" options:0 metrics:nil views:views];
+        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[titleLabel(height)]" options:0 metrics:metrics views:views];
         [self addConstraints:constraints];
-		
-        // default destructive index
-        _destructiveIndex = -1;
         
-        self.translatesAutoresizingMaskIntoConstraints = NO;
-	}
-	
-	return self;
+        [self insertButtonWithTitle:kDefaultCancel type:IAElegantButtonTypeCancel block:nil];
+    }
+    
+    return self;
+}
+
+- (UILabel *)generateTitleLabelForTitle:(NSString *)title {
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    titleLabel.text = [title uppercaseString];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+    titleLabel.shadowColor = [UIColor blackColor];
+    titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
+    titleLabel.font = [UIFont boldElegantFontWithSize:titleLabel.font.pointSize];
+    titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    titleLabel.backgroundColor = _baseColor;
+    return titleLabel;
+}
+
+- (CGFloat)titleHeight {
+    return 40.0f;
+}
+
+- (CGFloat)buttonHeight {
+    return 34.0f;
+}
+
+- (CGFloat)transitionDuration {
+    return kTransitionDuration;
 }
 
 #pragma mark - Adding buttons and setting cancel button
 
-- (void)setDestructiveButtonWithTitle:(NSString *)title block:(void (^)())block {    
-    if (self.destructiveIndex >= 0) {
-        NSString *oldTitle = self.buttonTitles[self.destructiveIndex];
-        [self.buttonTitles removeObjectAtIndex:self.destructiveIndex];
-        [self.blocks removeObjectForKey:oldTitle];
+- (void)setDestructiveButtonWithTitle:(NSString *)title block:(void (^)())block {
+    IAElegantButton *destructiveButton = [self destructiveButton];
+    void (^blockWithDismiss)() = [self setBlockWithDismissal:block];
+    
+    if (!destructiveButton) {
+        [self insertButtonWithTitle:title type:IAElegantButtonTypeDestructive block:blockWithDismiss];
+        return;
     }
     
-    NSInteger index = self.buttonTitles.count-1;
-    [self.buttonTitles insertObject:title atIndex:index];
-    self.blocks[title] = [block copy];
-    self.destructiveIndex = index;
+    if (title && ![title isEqualToString:@""]) {
+        destructiveButton.buttonTitle = title;
+    }
+    
+    if (block) {
+        destructiveButton.buttonAction = blockWithDismiss;
+    }
 }
 
 - (void)setCancelButtonWithTitle:(NSString *)title block:(void(^)())block {
-	// get the old ones
-	NSString *oldTitle = [self.buttonTitles lastObject];
-	NSString *newTitle;
-	
-	// remove old title, if there's a new one
-	if (title && ![title isEqualToString:@""]) {
-		newTitle = title;
-		[self.buttonTitles removeLastObject];
-		[self.buttonTitles addObject:newTitle];
-	} else {
-		newTitle = oldTitle;
-	}
-	
-	// add a new block
-	if (block && ![block isEqual:[NSNull null]]) {
-		self.blocks[newTitle] = [block copy];
-	} else {
-		self.blocks[newTitle] = [self.blocks[oldTitle] copy];
-	}
-	
-	// remove the old block
-	[self.blocks removeObjectForKey:oldTitle];		
+    IAElegantButton *cancelButton = [self cancelButton];
+    void (^blockWithDismiss)() = [self setBlockWithDismissal:block];
+    
+    if (title && ![title isEqualToString:@""]) {
+        cancelButton.buttonTitle = title;
+    }
+    
+    if (block) {
+        cancelButton.buttonAction = blockWithDismiss;
+    }
 }
 
 - (void)addButtonsWithTitle:(NSString *)title block:(void(^)())block {
-	[self.buttonTitles insertObject:title atIndex:self.buttonTitles.count-1];
-	[self.blocks setObject:[block copy] forKey:title];
+    [self insertButtonWithTitle:title type:IAElegantButtonTypeDefault block:block];
+}
+
+#pragma mark - Helper methods
+
+- (IAElegantButton *)buttonsForType:(IAElegantButtonType)type {
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"elegantButtonType == %@", @(type)];
+    NSArray *filteredButtons = [self.buttons filteredArrayUsingPredicate:predicate];
+    return [filteredButtons firstObject];
+}
+
+- (IAElegantButton *)destructiveButton {
+    return [self buttonsForType:IAElegantButtonTypeDestructive];
+}
+
+- (IAElegantButton *)cancelButton {
+    return [self buttonsForType:IAElegantButtonTypeCancel];
+}
+
+- (void (^)())setBlockWithDismissal:(void (^)())block {
+    __weak typeof(self) welf = self;
+    return ^{
+        if (block) block();
+        [welf dismiss];
+    };
+}
+
+- (void)insertButtonWithTitle:(NSString *)title type:(IAElegantButtonType)type block:(void(^)())block {
+    void (^blockWithDismiss)() = [self setBlockWithDismissal:block];
+    [self.buttons addObject:[IAElegantButton buttonWithTitle:title type:type baseColor:self.baseColor block:blockWithDismiss]];
+    [self reorderButtons:self.buttons];
+}
+
+- (void)reorderButtons:(NSMutableArray *)buttons {
+    IAElegantButton *destructiveButton = [self destructiveButton];
+    if (destructiveButton) {
+        [buttons removeObjectIdenticalTo:destructiveButton];
+        [buttons addObject:destructiveButton];
+    }
+    
+    IAElegantButton *cancelButton = [self cancelButton];
+    if (cancelButton) {
+        [buttons removeObjectIdenticalTo:cancelButton];
+        [buttons addObject:cancelButton];
+    }
 }
 
 #pragma mark - Preparation before showing view
 
 - (void)prepare:(CGRect)frame {
-	CGRect f = CGRectMake(0.0, 0.0, frame.size.width, 38.0);
-	UILabel *titleLabel = (UILabel *)[self viewWithTag:TitleTag];
-    titleLabel.frame = f;
-	titleLabel.backgroundColor = self.baseColor;
+    self.frame = CGRectMake(0.0, 0.0, CGRectGetWidth(frame), (self.buttons.count * self.buttonHeight + self.titleHeight));
     
-	__block CGFloat cursor = f.size.height;
-    UIFont *buttonFont = [UIFont elegantFontWithSize:14.0];
-    [self.buttonTitles enumerateObjectsUsingBlock:^(NSString *buttonTitle, NSUInteger index, BOOL *stop) {
-        CGFloat labelHeight = 32.0;
+    [self.buttons enumerateObjectsUsingBlock:^(IAElegantButton *button, NSUInteger idx, BOOL *stop) {
+        if ([self.subviews containsObject:button]) {
+            return;
+        }
         
-		UIButton *optionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-		optionButton.tag = index;
-        optionButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:button];
         
-        UIColor *buttonColor = (self.destructiveIndex != index)? self.baseColor : [UIColor redColor];
-		optionButton.backgroundColor = [buttonColor colorWithAlphaComponent:Alpha];
-		optionButton.titleLabel.font = buttonFont;
-		optionButton.titleLabel.textColor = [UIColor colorWithWhite:0.9 alpha:1.0];
-		optionButton.adjustsImageWhenHighlighted = YES;
-        
-		[optionButton setTitle:[buttonTitle uppercaseString] forState:UIControlStateNormal];
-		
-		[optionButton addTarget:self action:@selector(callBlocks:) forControlEvents:UIControlEventTouchUpInside];
-		[optionButton addTarget:self action:@selector(buttonHighlight:) forControlEvents:UIControlEventTouchDown];
-		[optionButton addTarget:self action:@selector(buttonNormal:) forControlEvents:UIControlEventTouchUpOutside];
-		
-		[self addSubview:optionButton];
-        
-        // autolayout code
-        NSDictionary *views = NSDictionaryOfVariableBindings(optionButton);
-        NSDictionary *metrics = @{ @"height": @(labelHeight), @"cursor" : @(cursor) };
-        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[optionButton]|" options:0 metrics:metrics views:views];
+        NSDictionary *views = NSDictionaryOfVariableBindings(button);
+        NSDictionary *metrics = @{ @"height": @(self.buttonHeight), @"cursor" : @(idx * self.buttonHeight + self.titleHeight) };        
+        NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[button]|" options:0 metrics:metrics views:views];
         [self addConstraints:constraints];
-        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-cursor-[optionButton(height)]" options:0 metrics:metrics views:views];
+        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-cursor-[button(height)]" options:0 metrics:metrics views:views];
         [self addConstraints:constraints];
-        
-		cursor += labelHeight;
-		
-		if (index != ([self.buttonTitles count] - 1)) {
-			UIView *line = [[UIView alloc] init];
-            line.translatesAutoresizingMaskIntoConstraints = NO;
-			[line setBackgroundColor:[UIColor colorWithWhite:.9 alpha:0.5]];
-			[self addSubview:line];
-            
-            NSDictionary *views = NSDictionaryOfVariableBindings(line);
-            NSDictionary *metrics = @{ @"padding": @4, @"topMargin" : @(cursor-1), @"thickness" : @0.5 };
-            NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|-padding-[line]-padding-|" options:0 metrics:metrics views:views];
-            [self addConstraints:constraints];
-            constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topMargin-[line(thickness)]" options:0 metrics:metrics views:views];
-            [self addConstraints:constraints];
-		}
     }];
-	
-	self.frame = CGRectMake(0.0, 0.0, frame.size.width, cursor);
-}
-
-- (void)callBlocks:(UIButton *)button {
-	[self buttonNormal:button];
-	
-	// get the block from the dictionary
-	NSInteger tag = button.tag;
-	NSString *blockKey = self.buttonTitles[tag];
-	void (^block)() = self.blocks[blockKey];
-	
-	// dismiss and then fire the block
-	block();
-	[self dismiss];
-}
-
-- (void)buttonHighlight:(UIButton *)button {	
-	// darken color
-	[button setBackgroundColor:[button.backgroundColor colorWithAlphaComponent:Alpha+0.05]];
-}
-
-- (void)buttonNormal:(UIButton *)button {
-	// normalize color
-	[button setBackgroundColor:[button.backgroundColor colorWithAlphaComponent:Alpha]];
 }
 
 #pragma mark - Showing and dismissing methods
 
 - (void)showInView:(UIView *)view {
-	[self prepare:view.frame];
-	
-	// place to the bottom
-	[view addSubview:self];
+    if (self.isShowing) return;
+    
+    [self prepare:view.frame];
+    [view addSubview:self];
     
     // adding autolayout code
-    UIView *elegantSheet = self;
-    NSDictionary *metrics = @{ @"height": @(self.frame.size.height), @"minusHeight" : @(-self.frame.size.height) };
-    NSDictionary *views = NSDictionaryOfVariableBindings(elegantSheet);
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    NSDictionary *metrics = @{ @"height": @(CGRectGetHeight(self.frame)) };
+    NSDictionary *views = @{ @"elegantSheet" : self };
     
-    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[elegantSheet(height)]|" options:0 metrics:metrics views:views];
-    [view addConstraints:verticalConstraints];
-    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[elegantSheet]|" options:0 metrics:nil views:views];
-    [view addConstraints:horizontalConstraints];
+    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[elegantSheet(height)]|" options:0 metrics:metrics views:views];
+    [view addConstraints:constraints];
+    constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[elegantSheet]|" options:0 metrics:nil views:views];
+    [view addConstraints:constraints];
     
-	// slide from bottom
-    self.transform = CGAffineTransformMakeTranslation(0, self.bounds.size.height);
-    [UIView animateWithDuration:TransitionDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    // slide from bottom
+    self.transform = CGAffineTransformMakeTranslation(0, CGRectGetHeight(self.bounds));
+    [UIView animateWithDuration:self.transitionDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.transform = CGAffineTransformMakeTranslation(0, 0);
-    } completion:NULL];
+    } completion:^(BOOL finished) {
+        self.showing = YES;
+    }];
 }
 
 - (void)dismiss {
-	if (!self.superview) return;
-	
+    if (!self.superview) return;
+    
     __block CGRect f = self.frame;
-	[UIView animateWithDuration:TransitionDuration animations:^{
+    [UIView animateWithDuration:self.transitionDuration animations:^{
         f.origin.y += f.size.height;
         self.frame = f;
-	} completion:^(BOOL finished) {
-		[self removeFromSuperview];
-	}];
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+        self.showing = NO;
+    }];
 }
 
 @end

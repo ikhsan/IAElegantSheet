@@ -1,6 +1,5 @@
 //
-//  IACustomSheet.h
-//  Penny
+//  IAElegantSheet
 //
 //  Created by Ikhsan Assaat on 5/10/13.
 //  Copyright (c) 2013 Homegrown Laboratories. All rights reserved.
@@ -20,5 +19,6 @@
 - (void)setCancelButtonWithTitle:(NSString *)title block:(void(^)())block;
 
 - (void)showInView:(UIView *)view;
+- (void)dismiss;
 
 @end
