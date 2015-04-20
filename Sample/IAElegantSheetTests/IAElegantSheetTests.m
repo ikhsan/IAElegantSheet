@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "IAElegantSheet.h"
+#import "IAElegantButton.h"
 
-@interface IAElegantSheet()
+@interface IAElegantSheet (Test)
 
 @property (weak, nonatomic) UILabel *titleLabel;
 @property (nonatomic, readonly) CGFloat titleHeight;
@@ -20,10 +21,23 @@
 @property (strong, nonatomic) NSMutableArray *buttons;
 @property (assign, nonatomic, getter=isShowing) BOOL showing;
 
+@property (nonatomic, readonly) IAElegantButton *destructiveButton;
+@property (nonatomic, readonly) IAElegantButton *cancelButton;
+
+@end
+
+@implementation IAElegantSheet (Test)
+
+@dynamic titleLabel, titleHeight, buttonHeight, buttons, transitionDuration, showing, destructiveButton, cancelButton;
+
+- (CGFloat)transitionDuration { return 0; }
+
 @end
 
 
 @interface IAElegantSheetTests : XCTestCase
+
+@property (nonatomic, strong) UIView *view;
 
 @end
 
@@ -31,15 +45,17 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+
+    self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 768)];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    self.view = nil;
+
     [super tearDown];
 }
 
-- (void)testInitializers {
+- (void)testSheetInitializersReturnsValidSheet {
     IAElegantSheet *sheet1 = [[IAElegantSheet alloc] initWithTitle:@"title1"];
     XCTAssertNotNil(sheet1, @"Should not be nil");
     XCTAssertEqualObjects(@"TITLE1", sheet1.titleLabel.text, @"Should have correct title");
@@ -47,6 +63,48 @@
     IAElegantSheet *sheet2 = [IAElegantSheet elegantSheetWithTitle:@"title2"];
     XCTAssertNotNil(sheet2, @"Should not be nil");
     XCTAssertEqualObjects(@"TITLE2", sheet2.titleLabel.text, @"Should have correct title");
+}
+
+- (void)testSheetShouldHaveCancelButtonByDefault {
+    IAElegantSheet *sheet = [[IAElegantSheet alloc] initWithTitle:@"title"];
+
+    XCTAssertEqual(1, sheet.buttons.count, @"Should have one button, cancel");
+
+    IAElegantButton *button = sheet.buttons.firstObject;
+    XCTAssertEqualObjects(@"Cancel", button.buttonTitle);
+}
+
+- (void)testSheetShouldHaveCorrectSetterForCancel {
+    XCTestExpectation *tapExpectation = [self expectationWithDescription:@"cancel tap"];
+    __block BOOL isCancelled = NO;
+
+    IAElegantSheet *sheet = [[IAElegantSheet alloc] initWithTitle:@"title"];
+    [sheet setCancelButtonWithTitle:@"Abort" block:^{
+        isCancelled = YES;
+        [tapExpectation fulfill];
+    }];
+
+    IAElegantButton *button = sheet.cancelButton;
+    XCTAssertEqualObjects(@"Abort", button.buttonTitle, @"Should changed text for the cancel button");
+
+    button.buttonAction();
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+    XCTAssertTrue(isCancelled, @"Cancel inside block should be called");
+}
+
+- (void)testSheetShowInsideViewShouldAppearInsideView {
+    IAElegantSheet *sheet = [[IAElegantSheet alloc] initWithTitle:@"title"];
+    [sheet showInView:self.view];
+    XCTAssertTrue([self.view.subviews containsObject:sheet], @"View should have sheet as a subview");
+    XCTAssertTrue(sheet.isShowing, @"Sheet should be shown");
+}
+
+- (void)testSheetDismissShouldRemoveView {
+    IAElegantSheet *sheet = [[IAElegantSheet alloc] initWithTitle:@"title"];
+    [sheet showInView:self.view];
+    [sheet dismiss];
+    XCTAssertFalse([self.view.subviews containsObject:sheet], @"View should have sheet as a subview");
+    XCTAssertFalse(sheet.isShowing, @"Sheet should be hidden");
 }
 
 @end

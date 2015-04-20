@@ -201,6 +201,13 @@ static const CGFloat kTransitionDuration = 0.2f;
     
     // slide from bottom
     self.transform = CGAffineTransformMakeTranslation(0, CGRectGetHeight(self.bounds));
+    
+    if (self.transitionDuration == 0) {
+        self.transform = CGAffineTransformMakeTranslation(0, 0);
+        self.showing = YES;
+        return;
+    }
+
     [UIView animateWithDuration:self.transitionDuration delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         self.transform = CGAffineTransformMakeTranslation(0, 0);
     } completion:^(BOOL finished) {
@@ -210,15 +217,25 @@ static const CGFloat kTransitionDuration = 0.2f;
 
 - (void)dismiss {
     if (!self.superview) return;
-    
+
+    if (self.transitionDuration == 0) {
+        [self removeFromSuperView];
+        return;
+    }
+
     __block CGRect f = self.frame;
+    typeof(self) __weak weakSelf = self;
     [UIView animateWithDuration:self.transitionDuration animations:^{
         f.origin.y += f.size.height;
         self.frame = f;
     } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-        self.showing = NO;
+        [weakSelf removeFromSuperView];
     }];
+}
+
+- (void)removeFromSuperView {
+    [self removeFromSuperview];
+    self.showing = NO;
 }
 
 @end
