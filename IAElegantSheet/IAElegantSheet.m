@@ -184,21 +184,25 @@ static const CGFloat kTransitionDuration = 0.2f;
 #pragma mark - Showing and dismissing methods
 
 - (void)showInView:(UIView *)view {
+    [self showInView:view completion:nil];
+}
+
+- (void)showInView:(UIView *)view completion:(void (^)())completion {
     if (self.isShowing) return;
-    
+
     [self prepare:view.frame];
     [view addSubview:self];
-    
+
     // adding autolayout code
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSDictionary *metrics = @{ @"height": @(CGRectGetHeight(self.frame)) };
     NSDictionary *views = @{ @"elegantSheet" : self };
-    
+
     NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[elegantSheet(height)]|" options:0 metrics:metrics views:views];
     [view addConstraints:constraints];
     constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"|[elegantSheet]|" options:0 metrics:nil views:views];
     [view addConstraints:constraints];
-    
+
     // slide from bottom
     self.transform = CGAffineTransformMakeTranslation(0, CGRectGetHeight(self.bounds));
 
@@ -206,10 +210,15 @@ static const CGFloat kTransitionDuration = 0.2f;
         self.transform = CGAffineTransformMakeTranslation(0, 0);
     } completion:^(BOOL finished) {
         self.showing = YES;
+        if (completion) completion();
     }];
 }
 
 - (void)dismiss {
+    [self dismissWithCompletion:nil];
+}
+
+- (void)dismissWithCompletion:(void (^)())completion {
     if (!self.superview) return;
 
     __block CGRect f = self.frame;
@@ -219,7 +228,12 @@ static const CGFloat kTransitionDuration = 0.2f;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
         self.showing = NO;
+        if (completion) completion();
     }];
+}
+
+- (void)setShowing:(BOOL)showing {
+    _showing = showing;
 }
 
 
