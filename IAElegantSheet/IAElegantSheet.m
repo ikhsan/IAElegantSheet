@@ -10,14 +10,16 @@
 #import "IAElegantButton.h"
 
 static NSString *const kDefaultCancel = @"Cancel";
+static const CGFloat kTitleHeight = 40.0f;
+static const CGFloat kButtonHeight = 34.0f;
 static const CGFloat kTransitionDuration = 0.2f;
 
 @interface IAElegantSheet()
 
 @property (weak, nonatomic) UILabel *titleLabel;
-@property (nonatomic, readonly) CGFloat titleHeight;
-@property (nonatomic, readonly) CGFloat buttonHeight;
-@property (nonatomic, readonly) CGFloat transitionDuration;
+@property (nonatomic, assign) CGFloat titleHeight;
+@property (nonatomic, assign) CGFloat buttonHeight;
+@property (nonatomic, assign) CGFloat transitionDuration;
 
 @property (strong, nonatomic) NSMutableArray *buttons;
 @property (assign, nonatomic, getter=isShowing) BOOL showing;
@@ -35,6 +37,9 @@ static const CGFloat kTransitionDuration = 0.2f;
     if (self) {
         _baseColor = [UIColor blackColor];
         _buttons = [NSMutableArray array];
+        _titleHeight = kTitleHeight;
+        _buttonHeight = kButtonHeight;
+        _transitionDuration = kTransitionDuration;
         
         // adding title label
         UILabel *titleLabel = [self generateTitleLabelForTitle:title];
@@ -65,18 +70,6 @@ static const CGFloat kTransitionDuration = 0.2f;
     titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     titleLabel.backgroundColor = _baseColor;
     return titleLabel;
-}
-
-- (CGFloat)titleHeight {
-    return 40.0f;
-}
-
-- (CGFloat)buttonHeight {
-    return 34.0f;
-}
-
-- (CGFloat)transitionDuration {
-    return kTransitionDuration;
 }
 
 #pragma mark - Adding buttons and setting cancel button
@@ -230,10 +223,6 @@ static const CGFloat kTransitionDuration = 0.2f;
         self.showing = NO;
         if (completion) completion();
     }];
-}
-
-- (void)setShowing:(BOOL)showing {
-    _showing = showing;
 }
 
 
