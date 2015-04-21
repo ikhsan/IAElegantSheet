@@ -30,7 +30,7 @@
 
 @dynamic titleLabel, titleHeight, buttonHeight, buttons, transitionDuration, showing, destructiveButton, cancelButton;
 
-- (CGFloat)transitionDuration { return 0; }
+- (CGFloat)transitionDuration { return 0.1f; }
 
 @end
 
@@ -74,7 +74,7 @@
     XCTAssertEqualObjects(@"Cancel", button.buttonTitle);
 }
 
-- (void)testSheetShouldHaveCorrectSetterForCancel {
+- (void)testSheetShouldHaveCorrectSetterForCancelButton {
     XCTestExpectation *tapExpectation = [self expectationWithDescription:@"cancel tap"];
     __block BOOL isCancelled = NO;
 
@@ -92,19 +92,58 @@
     XCTAssertTrue(isCancelled, @"Cancel inside block should be called");
 }
 
+- (void)testSheetShouldHaveCorrectSetterForDestructiveButton {
+    XCTestExpectation *tapExpectation = [self expectationWithDescription:@"destructive tap"];
+    __block BOOL isDestructed = NO;
+
+    IAElegantSheet *sheet = [[IAElegantSheet alloc] initWithTitle:@"title"];
+    [sheet setDestructiveButtonWithTitle:@"Blow some rockets" block:^{
+        isDestructed = YES;
+        [tapExpectation fulfill];
+    }];
+
+    IAElegantButton *button = sheet.destructiveButton;
+    XCTAssertEqualObjects(@"Blow some rockets", button.buttonTitle, @"Should changed text for the destructive button");
+
+    button.buttonAction();
+    [self waitForExpectationsWithTimeout:1 handler:nil];
+    XCTAssertTrue(isDestructed, @"Destructive block should be called");
+}
+
+- (void)testSheetShouldAddButtonsCorrectly {
+    IAElegantSheet *sheet = [[IAElegantSheet alloc] initWithTitle:@"title"];
+    [sheet addButtonsWithTitle:@"a" block:nil];
+    [sheet addButtonsWithTitle:@"b" block:nil];
+    [sheet addButtonsWithTitle:@"c" block:nil];
+
+    XCTAssertEqual(4, sheet.buttons.count, @"Sheet should have correct total of buttons");
+}
+
+- (void)testSheetShouldHaveCorrectButtonsOrder {}
+
 - (void)testSheetShowInsideViewShouldAppearInsideView {
     IAElegantSheet *sheet = [[IAElegantSheet alloc] initWithTitle:@"title"];
     [sheet showInView:self.view];
-    XCTAssertTrue([self.view.subviews containsObject:sheet], @"View should have sheet as a subview");
-    XCTAssertTrue(sheet.isShowing, @"Sheet should be shown");
+
+    // test in the next run loop
+    dispatch_after((uint64_t)0.0, dispatch_get_main_queue(), ^{
+        XCTAssertTrue([self.view.subviews containsObject:sheet], @"View should have sheet as a subview");
+        XCTAssertTrue(sheet.isShowing, @"Sheet should be shown");
+    });
 }
 
 - (void)testSheetDismissShouldRemoveView {
     IAElegantSheet *sheet = [[IAElegantSheet alloc] initWithTitle:@"title"];
     [sheet showInView:self.view];
     [sheet dismiss];
-    XCTAssertFalse([self.view.subviews containsObject:sheet], @"View should have sheet as a subview");
-    XCTAssertFalse(sheet.isShowing, @"Sheet should be hidden");
+
+    // test in the next run loop
+    dispatch_after((uint64_t)0.0, dispatch_get_main_queue(), ^{
+        XCTAssertFalse([self.view.subviews containsObject:sheet], @"View should have sheet as a subview");
+        XCTAssertFalse(sheet.isShowing, @"Sheet should be hidden");
+    });
 }
+
+- (void)testSheetShouldTapAnyButtonShouldDismissIt {}
 
 @end
