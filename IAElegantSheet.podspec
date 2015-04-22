@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "IAElegantSheet"
-  s.version      = "0.2.0"
+  s.version      = "0.2.1"
   s.summary      = "Another block based UIActionSheet but more elegant. Elegant to code and elegant to see."
   s.description  = "Block based UIActionSheet but more elegant. Using Roboto Condensed as default font. Support multiple orientation as well."
   s.homepage     = "http://ikhsan.me"
