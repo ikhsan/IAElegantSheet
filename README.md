@@ -1,6 +1,6 @@
 # IAElegantSheet 
 [![Build Status](https://travis-ci.org/ikhsan/IAElegantSheet.svg?branch=master)](https://travis-ci.org/ikhsan/IAElegantSheet)
-[![Cocoapods](https://cocoapod-badges.herokuapp.com/v/IAElegantSheet/badge.png)](http://cocoapods.org/?q=iaelegantsheet)
+[![CocoaPods](https://cocoapod-badges.herokuapp.com/v/IAElegantSheet/badge.png)](http://cocoapods.org/?q=iaelegantsheet)
 [![Coverage Status](https://coveralls.io/repos/ikhsan/IAElegantSheet/badge.svg?branch=master)](https://coveralls.io/r/ikhsan/IAElegantSheet?branch=master)
 
 Another UIActionSheet but more elegant. Elegant to code and elegant to see. Using Roboto Condensed as default font.
